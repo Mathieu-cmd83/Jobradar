@@ -38,6 +38,8 @@ SOURCES = [Source('territorial', 'Emploi-Territorial (Var)',
 
 # Explicit restrictions encountered during the 2026-10-08 review.
 RESTRICTED_TERMS = {
+    'advance': 'https://www.advanceemploi.fr/mentions-legales/',
+    'regional': 'https://www.regional-interim.fr/mentions-legales',
     'adecco': 'https://www.adecco.com/fr-fr/conditions-generales',
     'manpower': 'https://www.manpower.fr/contenu-statique/conditions-generales-d-utilisation',
     'adequat': 'https://www.lejobadequat.com/mentions-legales',
@@ -65,7 +67,9 @@ SOURCES = [replace(s, access_review='restricted', terms_url=RESTRICTED_TERMS[s.i
 SOURCES = [replace(s, domains=s.domains + ('adecco.com', 'www.adecco.com'),
                    url='https://www.adecco.com/fr-fr') if s.id == 'adecco' else
            replace(s, domains=s.domains + ('actualgroup.com', 'www.actualgroup.com'),
-                   url='https://www.actualgroup.com/') if s.id == 'actual' else s for s in SOURCES]
+                   url='https://www.actualgroup.com/') if s.id == 'actual' else
+           replace(s, domains=s.domains + ('advanceemploi.fr', 'www.advanceemploi.fr'),
+                   url='https://www.advanceemploi.fr/') if s.id == 'advance' else s for s in SOURCES]
 SOURCES = [replace(s, kind='wordpress', enabled=True, access_review='approved',
                    url='https://www.triangle.fr/wp-json/wp/v2/job?search=Toulon&per_page=100&orderby=date&order=desc',
                    terms_url='https://www.triangle.fr/politique-de-confidentialite/',

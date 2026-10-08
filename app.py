@@ -1,4 +1,4 @@
-"""JobRadar V5 — offres intégrées, provenance, historique et suivi par source."""
+"""JobRadar — offres intégrées, dates explicites et suivi par source."""
 import csv
 from datetime import datetime, timedelta
 import io
@@ -9,7 +9,7 @@ import sqlite3
 
 import streamlit as st
 
-from jobradar.models import CONTRACT_OPTIONS, PARIS, UTC
+from jobradar.models import CONTRACT_OPTIONS, PARIS, UTC, effective_date
 from jobradar.registry import SOURCES
 from jobradar.service import deduplicate, filter_jobs, refresh
 from jobradar.storage import Store
@@ -39,8 +39,8 @@ STATUS_LABELS = {
 }
 
 
-def date_label(value):
-    return datetime.fromisoformat(value).astimezone(PARIS).strftime('%d/%m/%Y %H:%M') if value else 'Non renseignée'
+def date_label(value, precision='time'):
+    return datetime.fromisoformat(value).astimezone(PARIS).strftime('%d/%m/%Y' if precision == 'day' else '%d/%m/%Y %H:%M') if value else 'Non renseignée'
 
 
 def as_csv(rows):
@@ -74,8 +74,14 @@ with st.sidebar:
     location = st.text_input('Commune ou lieu', placeholder='Ex. Toulon, La Garde') if area == 'Commune / lieu à préciser' else ''
     hours = st.selectbox('Temps de travail', ['Indifférent', 'Temps plein uniquement', 'Temps partiel uniquement', 'Non précisé'])
     contracts = st.multiselect('Type de contrat / emploi', CONTRACT_OPTIONS, placeholder='Tous les types')
-    names = {s.id: s.name for s in SOURCES}
+    names = {s.id: s.name for s in SOURCES if s.enabled and s.access_review in ('approved', 'public_rss')}
+    # Keep previously imported offers selectable when a connector is suspended.
+    for record in store.jobs():
+        names.setdefault(record['source_id'], record['source_name'] + ' (historique)')
     selected = st.multiselect('Sources', list(names), default=list(names), format_func=names.get)
+    st.caption('Sources avec connecteur actif ou annonces en historique. Les 23 agences suivies figurent dans État des sources ; leur suivi ne signifie pas qu’elles sont connectées.')
+    date_basis = st.selectbox('Date utilisée pour le tri et les filtres',
+                              ['Date disponible (publication puis RSS)', 'Publication sur le site uniquement', 'Publication RSS uniquement'])
     period = st.selectbox('Date de parution', ['Toutes les dates', '24 dernières heures', '3 derniers jours',
                                             '7 derniers jours', '14 derniers jours', '30 derniers jours', 'Période personnalisée'])
     now = datetime.now(UTC)
@@ -114,6 +120,8 @@ for source in SOURCES:
     status = state.get('status', audit.get('status', 'not_connected'))
     if not source.enabled and state:
         status = audit.get('status', 'not_connected')
+    if source.access_review == 'restricted':
+        status = 'terms_restricted'
     source_rows.append({
         'Source': source.name, 'Collecte activée': 'Oui' if source.enabled else 'Non',
         'Conditions': 'Réutilisation restreinte' if source.access_review == 'restricted' else 'Examinées' if source.access_review in ('approved', 'public_rss') else 'À examiner',
@@ -122,7 +130,7 @@ for source in SOURCES:
         'Dernier contrôle': date_label(state.get('checked_at') if source.enabled else audit.get('checked_at')),
         'Dernier succès avec offres': date_label(state.get('last_nonempty_success')),
         'Offres reçues': state.get('fetched', 0), 'Offres du Var importées': state.get('imported', 0),
-        'Détail': state.get('message', '') if source.enabled else audit.get('message', 'Endpoint et conditions non examinés.'),
+        'Détail': state.get('message', '') if source.enabled else source.review_note or audit.get('message', 'Endpoint et conditions non examinés.'),
     })
 
 agency_ids = {s.id for s in SOURCES if s.id != 'territorial'}
@@ -150,7 +158,9 @@ with offers_tab:
             location=location, hours={'Indifférent': 'any', 'Temps plein uniquement': 'full',
                                       'Temps partiel uniquement': 'part', 'Non précisé': 'unknown'}[hours],
             contracts=contracts, start=start, end=end, since=since, include_expired=include_expired,
-            now=now, sort={'Plus récentes d’abord': 'recent', 'Plus anciennes d’abord': 'oldest', 'Titre A → Z': 'title'}[sort])
+            now=now, sort={'Plus récentes d’abord': 'recent', 'Plus anciennes d’abord': 'oldest', 'Titre A → Z': 'title'}[sort],
+            date_basis={'Date disponible (publication puis RSS)': 'available',
+                        'Publication sur le site uniquement': 'publication', 'Publication RSS uniquement': 'rss'}[date_basis])
     st.metric('Offres correspondant aux filtres', len(filtered))
     st.caption(f'{len(jobs)} annonces distinctes dans l’historique local. Les sources peuvent publier des listes partielles. '
                'Une annonce absente du dernier flux reste conservée ; son absence ne prouve pas son retrait.')
@@ -162,9 +172,13 @@ with offers_tab:
         with st.container(border=True):
             st.subheader(job['title'])
             st.caption(f"📍 {job['location'] or 'Var — lieu non précisé'} · {job['employer'] or 'Employeur non précisé'}")
-            kind = job.get('date_kind') or 'date'
-            st.caption(f"{kind.capitalize()} : {date_label(job.get('published_at'))} · "
-                       f"Dernière observation : {date_label(job['last_seen'])}")
+            published = effective_date(job, 'publication')
+            rss = effective_date(job, 'rss')
+            st.caption(f"Publication sur le site : {date_label(published, job.get('publication_precision', 'time'))}")
+            if rss or job.get('rss_updated_at') or (job['source_id'] == 'territorial' and not job.get('date_schema')):
+                updated = job.get('rss_updated_at') or (job.get('published_at') if not job.get('date_schema') and job.get('date_kind') == 'mise à jour' else None)
+                st.caption(f"Publication RSS : {date_label(rss)} · Mise à jour RSS : {date_label(updated)}")
+            st.caption(f"Première observation : {date_label(job['first_seen'])} · Dernière observation : {date_label(job['last_seen'])}")
             work_time = 'Temps plein' if job.get('full_time') is True else 'Temps partiel' if job.get('full_time') is False else 'Temps non précisé'
             st.caption(f"🕒 {work_time} · 📄 {job.get('contract', 'Non précisé')}")
             if job['expired']:
@@ -172,18 +186,24 @@ with offers_tab:
             if job['stale']:
                 st.caption('Annonce non revue depuis plus de sept jours : disponibilité à vérifier.')
             if job.get('description'):
-                st.write(job['description'])
+                st.text(job['description'])
+            else:
+                st.caption('Description non fournie par la source ; consultez l’annonce originale.')
             for origin in job['origins']:
                 st.link_button(f"Voir l’annonce originale · {origin['source_name']} ↗", origin['url'])
     if len(filtered) > max_results:
         st.caption(f'{max_results} offres affichées sur {len(filtered)}.')
     if filtered:
         export = [{k: j.get(k) for k in ('title', 'employer', 'location', 'contract', 'full_time', 'published_at',
+                                         'date_kind', 'publication_precision', 'rss_published_at', 'rss_updated_at',
                                          'expires_at', 'url', 'first_seen', 'last_seen')}
+                  | {'published_at': effective_date(j, 'publication'), 'rss_published_at': effective_date(j, 'rss')}
                   | {'sources': ', '.join(o['source_name'] for o in j['origins'])} for j in filtered]
         st.download_button('Exporter les offres filtrées (CSV)', as_csv(export), 'jobradar-offres.csv', 'text/csv')
     st.caption('Les lieux structurés sont utilisés en priorité ; les recherches dans le texte sont indicatives lorsque le lieu manque. '
-               'Les dates sont affichées à l’heure de Paris. Un flux indiquant seulement le jour ne permet pas de connaître l’heure exacte de parution.')
+               'Les dates sont affichées à l’heure de Paris. Une date RSS décrit le flux, pas la publication initiale de la mission. '
+               'La date disponible utilise publication sur le site, puis publication RSS, puis mise à jour RSS. L’observation ne remplace jamais une publication. '
+               'Une date connue au jour près est affichée sans heure.')
 
 with sources_tab:
     st.dataframe(source_rows, hide_index=True, width='stretch')
@@ -199,7 +219,8 @@ with history_tab:
     st.caption('300 dernières observations initiales ou modifications. Chaque source conserve ses propres versions avant déduplication. '
                'Le stockage local Streamlit peut être perdu au redémarrage ou au redéploiement : exportez les données ou utilisez un volume persistant.')
     if history:
-        visible = [{k: row.get(k) for k in ('source_name', 'title', 'location', 'published_at', 'expires_at', 'observed_at', 'url')}
+        visible = [{k: row.get(k) for k in ('source_name', 'title', 'location', 'rss_updated_at', 'expires_at', 'observed_at', 'url')}
+                   | {'published_at': effective_date(row, 'publication'), 'rss_published_at': effective_date(row, 'rss')}
                    for row in history]
         st.dataframe(visible, hide_index=True, width='stretch')
         st.download_button('Exporter l’historique affiché (CSV)', as_csv(visible), 'jobradar-historique.csv', 'text/csv')

@@ -54,6 +54,50 @@ def plain_text(value):
     return re.sub(r'\s+', ' ', unescape(''.join(parser.parts))).strip()
 
 
+class DescriptionParser(TextParser):
+    def handle_starttag(self, tag, attrs):
+        super().handle_starttag(tag, attrs)
+        if not self.hidden and tag in ('p', 'div', 'li', 'br', 'h2', 'h3', 'h4'):
+            self.parts.append('\n')
+        if not self.hidden and tag == 'li':
+            self.parts.append('• ')
+
+    def handle_endtag(self, tag):
+        super().handle_endtag(tag)
+        if tag in ('p', 'div', 'li', 'h2', 'h3', 'h4'):
+            self.parts.append('\n')
+
+
+def description_text(value):
+    """Safe text with paragraph/list boundaries, never rendered source HTML."""
+    parser = DescriptionParser()
+    parser.feed(str(value or ''))
+    lines = [re.sub(r'[^\S\n]+', ' ', line).strip() for line in ''.join(parser.parts).splitlines()]
+    return '\n'.join(line for line in lines if line)
+
+
+def date_precision(value):
+    return 'day' if re.fullmatch(r'\d{4}-\d{2}-\d{2}', str(value or '').strip()) else 'time'
+
+
+def effective_date(job, basis='available'):
+    """Observation is never a publication fallback, including legacy V5 RSS rows."""
+    rss = job.get('rss_published_at')
+    updated = job.get('rss_updated_at')
+    published = job.get('published_at')
+    if job.get('source_id') == 'territorial' and not job.get('date_schema'):
+        if job.get('date_kind') == 'mise à jour':
+            updated = published
+        else:
+            rss = published
+        published = None
+    if basis == 'publication':
+        return published
+    if basis == 'rss':
+        return rss
+    return published or rss or updated
+
+
 def parse_datetime(value, *, end_of_day=False):
     if not value:
         return None
@@ -145,6 +189,10 @@ class Job:
     expires_at: str | None = None
     full_time: bool | None = None
     contract: str = 'Non précisé'
+    rss_published_at: str | None = None
+    rss_updated_at: str | None = None
+    publication_precision: str = 'time'
+    date_schema: int = 2
 
     @property
     def key(self):

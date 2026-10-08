@@ -70,3 +70,6 @@ Le registre contient exactement les 23 enseignes retrouvées dans les anciennes 
 Pour une agence soumise à autorisation, obtenir un flux de syndication ou un accord de réutilisation couvrant la collecte prévue. Les formulaires de candidature, comptes candidats, portails authentifiés, CAPTCHA et chemins interdits restent hors collecte. Ne pas activer un site sur la seule base d’un `robots.txt` permissif.
 
 Pour planifier la collecte sur un hébergement avec disque persistant, lancer régulièrement `python -m jobradar.cli sync` avec le même `JOBRADAR_DB_PATH`. Aucun ordonnanceur n’est installé automatiquement.
+# Suite de la V5
+
+Voir [le bilan des corrections, dates et nouveaux contrôles de sources](docs/V6.md). Les audits V5 ci-dessous restent historiques ; aucune agence supplémentaire n’est annoncée connectée.

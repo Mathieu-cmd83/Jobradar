@@ -3,7 +3,7 @@ from hashlib import sha256
 import threading
 
 from .connectors import collect
-from .models import NEAR, PARIS, UTC, canonical_url, normalize
+from .models import NEAR, PARIS, UTC, canonical_url, normalize, effective_date
 from .network import SourceError
 
 REFRESH_LOCK = threading.Lock()
@@ -86,7 +86,7 @@ def deduplicate(records):
 
 def filter_jobs(jobs, *, selected_sources=None, keywords='', title_only=False, category_terms=(),
                 zone='var', location='', hours='any', contracts=(), start=None, end=None,
-                since=None, include_expired=False, now=None, sort='recent'):
+                since=None, include_expired=False, now=None, sort='recent', date_basis='available'):
     now = now or datetime.now(UTC)
     results, unknown = [], 0
     for job in jobs:
@@ -123,7 +123,9 @@ def filter_jobs(jobs, *, selected_sources=None, keywords='', title_only=False, c
             continue
         if contracts and row.get('contract') not in contracts:
             continue
-        published = datetime.fromisoformat(row['published_at']) if row.get('published_at') else None
+        value = effective_date(row, date_basis)
+        row['sort_date'] = value
+        published = datetime.fromisoformat(value) if value else None
         if start or end or since:
             if published is None:
                 unknown += 1
@@ -132,13 +134,12 @@ def filter_jobs(jobs, *, selected_sources=None, keywords='', title_only=False, c
             if (start and local_date < start) or (end and local_date > end) or (since and published < since):
                 continue
         results.append(row)
-    minimum = datetime.min.replace(tzinfo=UTC)
     if sort == 'title':
         results.sort(key=lambda j: normalize(j['title']))
     else:
-        dated = [j for j in results if j.get('published_at')]
-        undated = [j for j in results if not j.get('published_at')]
-        dated.sort(key=lambda j: datetime.fromisoformat(j['published_at']) if j.get('published_at') else minimum,
+        dated = [j for j in results if j.get('sort_date')]
+        undated = [j for j in results if not j.get('sort_date')]
+        dated.sort(key=lambda j: datetime.fromisoformat(j['sort_date']),
                    reverse=sort != 'oldest')
         results = dated + undated
     return results, unknown
