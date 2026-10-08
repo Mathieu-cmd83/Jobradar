@@ -1,18 +1,12 @@
-# JobRadar V4
-
-Application Streamlit : récupération des offres du Var à partir du flux RSS public **Emploi-Territorial**.
-
-Source : https://www.emploi-territorial.fr/rss?search-dept=083
-
-- Aucune clé API et aucun compte candidat.
-- Actualisation à la demande et cache d'une heure.
-- Filtres métier, mots-clés, zone approximative autour de Toulon.
-- Aucun suivi partagé des candidatures.
+# JobRadar V4.2
 
 ## Installation
+Remplacer `app.py`, `requirements.txt` et `README.md` dans le dépôt GitHub relié à Streamlit Cloud.
 
-Remplacer `app.py`, `requirements.txt` et `README.md` dans le dépôt GitHub, puis valider le commit. Streamlit Community Cloud redéploiera normalement automatiquement.
+## Nouveaux filtres
+- Temps de travail : indifférent, temps plein uniquement, temps partiel uniquement, non précisé.
+- Type de contrat / emploi : sélection multiple (CDI, CDD, intérim, emploi permanent/ temporaire public, contrat de projet, alternance, stage, autre, non précisé).
+- Tous les filtres de la V4.1 sont conservés, notamment le **tri décroissant par date de parution par défaut**.
 
-## Limites
-
-Cette V4 n'est **pas** encore un agrégateur des agences d'intérim : elle ne couvre que les offres de collectivités territoriales du Var présentes dans le flux. Le contenu exact et la quantité d'annonces ne peuvent être garantis. Le flux RSS peut renvoyer une erreur ou une liste partielle. Le filtrage géographique s'appuie sur les mots présents dans le texte du flux ; certaines offres locales peuvent ne pas être reconnues. Les conditions de réutilisation du flux doivent être respectées.
+## Important
+La seule source connectée reste le RSS Emploi-Territorial Var : https://www.emploi-territorial.fr/rss?search-dept=083 . Le flux ne garantit pas la présence des informations « type de contrat » et « temps de travail » : JobRadar n'invente pas les données manquantes. Les emplois permanents de la fonction publique ne sont **pas** classés automatiquement en CDI. Un filtre strict écarte les offres dont le champ n'est pas précisé. Pas d'identifiant candidat ni de clé API.
