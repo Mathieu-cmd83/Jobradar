@@ -1,60 +1,127 @@
-"""JobRadar V2: public job-search launcher, no candidate credentials."""
-from urllib.parse import urlencode
+"""JobRadar V3 — real public job feeds, no candidate credentials.
+Sources: Arbeitnow (Europe) and Remotive (remote). Neither guarantees Toulon coverage.
+"""
+from datetime import datetime, timezone
+from urllib.parse import urlparse
+import requests
 import streamlit as st
 
-st.set_page_config(page_title="JobRadar", page_icon="📡", layout="wide")
+st.set_page_config(page_title="JobRadar V3", page_icon="📡", layout="wide")
 
 CATEGORIES = {
-    "Logistique / magasinage": "préparateur commandes magasinier cariste",
-    "Livraison VL": "chauffeur livreur VL",
-    "Manutention / industrie": "manutentionnaire opérateur production",
-    "Maintenance / technique": "technicien maintenance",
-    "BTP / chantier": "ouvrier chantier préparateur travaux",
-    "Bureau d’études": "dessinateur projeteur métreur économiste construction",
-    "Accueil / restauration": "accueil serveur restauration",
+    "Tous les métiers": [],
+    "Logistique / magasinage": ["logistique", "logistics", "magasinier", "warehouse", "cariste", "préparateur de commandes"],
+    "Livraison VL": ["livreur", "delivery", "chauffeur", "driver", "courier"],
+    "Manutention / industrie": ["manutention", "production", "manufacturing", "operator", "opérateur"],
+    "Maintenance / technique": ["maintenance", "technicien", "technician", "mechanic"],
+    "BTP / chantier": ["construction", "chantier", "building", "travaux", "site manager"],
+    "Bureau d’études": ["engineering", "dessinateur", "projeteur", "métreur", "architect", "cad", "estimator"],
+    "Accueil / restauration": ["hospitality", "restaurant", "reception", "serveur", "hotel"],
 }
-# Domains are search scopes, NOT connected feeds. Verify individual search results at source.
-SITES = {
-    "France Travail": "francetravail.fr",
-    "Manpower": "manpower.fr", "Adecco": "adecco.fr", "Adéquat": "lejobadequat.com",
-    "Interaction": "interaction-interim.com", "Crit": "crit-job.com",
-    "Samsic": "samsic-emploi.fr", "Proman": "proman-emploi.fr",
-    "Advance Emploi": "advance-emploi.com", "Partnaire": "partnaire.fr",
-    "Mistertemp'": "mistertemp.com", "Gojob": "gojob.com",
-    "Randstad": "randstad.fr", "Synergie": "synergie.fr",
-    "Start People": "startpeople.fr", "R.A.S Intérim": "ras-interim.fr",
-    "Temporis": "temporis-franchise.fr", "Actual": "groupeactual.eu",
-    "Triangle Intérim": "triangle.fr", "Team Intérim": "team-interim.fr",
-    "Staffmatch": "staffmatch.com", "Intérim Nation": "interim-nation.fr",
-    "Satis Jobs Center": "satis-jobscenter.com", "R Intérim": "regional-interim.fr",
-}
+
+SESSION = requests.Session()
+SESSION.headers.update({"User-Agent": "JobRadar/3.0 (public job feed reader)", "Accept": "application/json"})
+
+
+def safe_url(url):
+    p = urlparse(str(url or ""))
+    return p.scheme == "https" and bool(p.netloc) and not p.username and not p.password
+
+
+def normalize_arbeitnow(item):
+    created = item.get("created_at")
+    date = datetime.fromtimestamp(created, timezone.utc).date().isoformat() if isinstance(created, (int, float)) else ""
+    return {"id": "arbeitnow:" + str(item.get("slug", "")), "title": item.get("title", ""),
+            "company": item.get("company_name", ""), "location": item.get("location", ""),
+            "contract": ", ".join(item.get("job_types") or []), "salary": "", "date": date,
+            "url": item.get("url", ""), "source": "Arbeitnow", "remote": bool(item.get("remote"))}
+
+
+def normalize_remotive(item):
+    return {"id": "remotive:" + str(item.get("id", "")), "title": item.get("title", ""),
+            "company": item.get("company_name", ""), "location": item.get("candidate_required_location", "Remote"),
+            "contract": item.get("job_type", ""), "salary": item.get("salary", ""),
+            "date": str(item.get("publication_date", ""))[:10], "url": item.get("url", ""),
+            "source": "Remotive", "remote": True}
+
+
+@st.cache_data(ttl=21600, show_spinner=False)
+def fetch_jobs():
+    jobs, errors, counts = [], [], {}
+    endpoints = [
+        ("Arbeitnow", "https://www.arbeitnow.com/api/job-board-api", "data", normalize_arbeitnow),
+        ("Remotive", "https://remotive.com/api/remote-jobs", "jobs", normalize_remotive),
+    ]
+    for source, url, key, normalizer in endpoints:
+        try:
+            response = SESSION.get(url, timeout=20)
+            response.raise_for_status()
+            payload = response.json()
+            raw = payload.get(key, [])
+            if not isinstance(raw, list):
+                raise ValueError("Format inattendu")
+            clean = [normalizer(item) for item in raw if isinstance(item, dict)]
+            clean = [item for item in clean if item["title"] and safe_url(item["url"])]
+            counts[source] = len(clean)
+            jobs.extend(clean)
+        except (requests.RequestException, ValueError, KeyError, OverflowError) as exc:
+            errors.append(f"{source} : {type(exc).__name__} — {str(exc)[:150]}")
+            counts[source] = 0
+    return jobs, errors, counts
+
+
+def filter_jobs(jobs, sources, category, keywords, location):
+    wanted = CATEGORIES[category]
+    terms = [word.casefold() for word in keywords.split() if word.strip()]
+    location = location.casefold().strip()
+    results, seen = [], set()
+    for job in jobs:
+        if job["source"] not in sources:
+            continue
+        title = str(job["title"]).casefold()
+        if wanted and not any(word in title for word in wanted):
+            continue
+        if terms and not all(word in (title + " " + str(job["company"]).casefold()) for word in terms):
+            continue
+        if location and location not in str(job["location"]).casefold():
+            continue
+        key = (title, str(job["company"]).casefold(), str(job["location"]).casefold())
+        if key in seen:
+            continue
+        seen.add(key)
+        results.append(job)
+    return sorted(results, key=lambda item: item["date"], reverse=True)
+
 
 st.title("📡 JobRadar")
-st.caption("V2 · Recherche sur des sites publics · Aucun compte candidat, aucune clé API")
-st.info("Cette version ouvre des recherches web ciblées sur les sites des recruteurs. Elle ne collecte pas encore les annonces automatiquement. Les résultats externes doivent être vérifiés sur le site d'origine.")
+st.caption("V3 · Annonces réellement récupérées depuis des API publiques · Aucun compte candidat, aucune clé")
+st.warning("Couverture actuelle limitée : Arbeitnow publie surtout des emplois européens (notamment en Allemagne), Remotive des emplois à distance. Ces sources ne couvrent pas encore correctement l'intérim à Toulon.")
 with st.sidebar:
     st.header("Recherche")
-    category = st.selectbox("Métier", ["Tous les métiers"] + list(CATEGORIES))
-    keyword = st.text_input("Mots-clés supplémentaires", placeholder="Ex. préparateur de commandes")
-    city = st.text_input("Ville / zone", value="Toulon Var")
-    selected = st.multiselect("Sources à afficher", list(SITES), default=list(SITES))
-    st.caption("Les sites ci-dessous ne sont pas encore des connecteurs automatiques.")
+    category = st.selectbox("Métier", list(CATEGORIES))
+    keywords = st.text_input("Mots-clés", placeholder="Ex. maintenance")
+    location = st.text_input("Localisation exacte (vide = toutes)", value="", placeholder="Ex. Toulon, France")
+    sources = st.multiselect("Sources réellement connectées", ["Arbeitnow", "Remotive"], default=["Arbeitnow", "Remotive"])
+    if st.button("🔄 Actualiser les flux", use_container_width=True):
+        fetch_jobs.clear()
+    st.caption("Actualisation mise en cache 6 heures, pour respecter les limites des fournisseurs.")
 
-terms = keyword.strip() or (CATEGORIES[category] if category != "Tous les métiers" else "emploi")
-st.write(f"**Recherche :** {terms} · **Zone :** {city}")
-if not selected:
-    st.warning("Sélectionne au moins une source dans la barre latérale.")
-else:
-    st.metric("Sites de recherche sélectionnés", len(selected))
-    for name in selected:
-        domain = SITES[name]
-        q = f'site:{domain} "{city.strip()}" {terms} emploi'
-        url = "https://www.google.com/search?" + urlencode({"q": q})
-        with st.container(border=True):
-            left, right = st.columns([3, 1])
-            left.markdown(f"**{name}**")
-            left.caption(f"Recherche externe ciblée sur {domain} · aucune offre importée")
-            right.link_button("Voir les offres ↗", url, use_container_width=True)
-
+with st.spinner("Récupération des annonces publiques…"):
+    jobs, errors, counts = fetch_jobs()
+for error in errors:
+    st.error("Connexion impossible — " + error)
+st.caption("Sources : " + " · ".join(f"{source} : {count} offres reçues" for source, count in counts.items()))
+filtered = filter_jobs(jobs, sources, category, keywords, location)
+st.metric("Annonces correspondant aux filtres", len(filtered))
+if not filtered:
+    st.info("Aucune annonce trouvée pour ces filtres dans les sources actuellement connectées. Essaie sans localisation ou avec « Tous les métiers ». Cela ne signifie pas qu'il n'existe aucune offre dans ta région.")
+for job in filtered[:150]:
+    with st.container(border=True):
+        st.subheader(job["title"])
+        st.write(f"**{job['company']}** · 📍 {job['location']}")
+        st.caption(f"{job['source']} · {job['date'] or 'Date inconnue'} · {job['contract'] or 'Contrat non précisé'}" + (f" · {job['salary']}" if job['salary'] else ""))
+        st.link_button("Voir l'annonce originale ↗", job["url"])
+if len(filtered) > 150:
+    st.caption("150 premières annonces affichées. Affine les filtres pour réduire la liste.")
 st.divider()
-st.caption("Confidentialité : JobRadar ne reçoit ni mot de passe candidat ni données de candidature. Les recherches sont ouvertes dans Google ; ses propres règles de confidentialité s'appliquent. Les résultats peuvent être anciens ou incomplets.")
+st.caption("Confidentialité : aucun compte candidat, aucune saisie de mot de passe, aucun suivi personnel stocké. Les liens mènent aux plateformes d'origine. Les flux peuvent être incomplets ou indisponibles.")

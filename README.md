@@ -1,27 +1,23 @@
-# JobRadar V2 — sans identifiants candidats
+# JobRadar V3 — vrais flux d'annonces
 
-Application Streamlit de lancement de recherches ciblées sur des sites publics d'offres d'emploi.
+Deux connecteurs publics sans clé ni compte candidat :
+- Arbeitnow : https://www.arbeitnow.com/blog/job-board-api
+- Remotive : https://remotive.com/remote-jobs/api
 
-## Installation
+**Important** : ces flux ne remplacent pas une couverture locale de Toulon ou des agences d'intérim françaises. Arbeitnow est principalement européen/tech, Remotive exclusivement télétravail. Une recherche « Toulon » peut retourner zéro résultat. Aucune agence française ni France Travail n'est prétendue connectée.
 
-```bash
-pip install -r requirements.txt
-streamlit run app.py
-```
+## Déploiement Streamlit
+Remplacer `app.py`, `requirements.txt`, `README.md` dans le dépôt GitHub existant. Streamlit Cloud se redéploie automatiquement. Aucun secret requis.
 
 ## Fonctionnement
+- Appels HTTPS aux API publiques, 20 s de délai maximum par source.
+- Cache 6 h pour éviter les requêtes répétées, bouton de rafraîchissement manuel.
+- Filtres métier, mots-clés, localisation exacte, sources ; liens directs.
+- Aucune donnée personnelle ou candidature conservée.
+- Pas de tests réseau live dans l'environnement de construction ; vérifier l'accès aux flux depuis Streamlit Cloud après déploiement.
 
-- Choix d'un métier, de mots-clés, d'une zone et de sources.
-- Chaque bouton ouvre une recherche Google limitée au domaine de la source concernée.
-- **Aucun compte candidat, mot de passe, cookie de session ou clé API n'est demandé ou conservé par l'application.**
-- **Ce n'est pas encore un agrégateur automatique** : aucune offre n'est importée, dédupliquée ou rafraîchie en arrière-plan.
-- Les résultats de recherche externes peuvent être obsolètes, incomplets ou hors zone. Les domaines devront être revérifiés au fil du temps.
-- Les recherches sont transmises à Google quand l'utilisateur clique ; les règles de confidentialité de Google s'appliquent.
-
-## Déploiement Streamlit Cloud
-
-Remplacer `app.py`, `README.md` et `requirements.txt` dans le dépôt GitHub, puis attendre le redéploiement. Aucun secret Streamlit requis.
-
-## Suite du projet
-
-Tester un à un des connecteurs autorisés, intégrer de vraies offres et leur date, puis prévoir un stockage privé et durable des favoris avant de rétablir le suivi de candidatures.
+## Limites
+- La couverture française et locale est faible ; la prochaine étape est l'intégration de sources françaises réellement autorisées.
+- Les catégories sont des correspondances de mots-clés dans le titre, pas une classification sémantique.
+- Pas de favoris durables ni de planification quotidienne.
+- Les conditions des fournisseurs et les quotas doivent être respectés.
