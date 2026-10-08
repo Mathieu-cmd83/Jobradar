@@ -1,0 +1,604 @@
+{
+  "checked_at": "2026-10-08T13:22:43.895144+00:00",
+  "agencies": [
+    {
+      "source_id": "manpower",
+      "name": "Manpower",
+      "domain": "www.manpower.fr",
+      "checked_at": "2026-10-08T13:22:19.401061+00:00",
+      "connected": false,
+      "probed_url": "https://www.manpower.fr/robots.txt",
+      "rss_candidates": [],
+      "api_candidates": [],
+      "jobposting_nodes": 0,
+      "terms_candidates": [],
+      "sitemaps": [],
+      "robots_allowed_homepage": true,
+      "homepage_url": "https://www.manpower.fr/",
+      "terms_evidence": [],
+      "status": "terms_restricted",
+      "message": "Réutilisation/extraction restreinte par les conditions examinées ; collecte désactivée.",
+      "terms_url": "https://www.manpower.fr/contenu-statique/conditions-generales-d-utilisation",
+      "restriction_quote": "toute représentation, reproduction, extraction, ou exploitation non expressément autorisée par Manpower, intégrale ou partielle, à titre gratuit ou onéreux, et par quelque procédé que ce soit d'un ou plusieurs éléments du Site, est illicite et constitue une contrefaçon sanctionnée notamment par les articles L.335-2 et suivants du Code de la Propriété Intellectuelle. « Manpower », « ManpowerGroup » et les différents logos et dénominations publiés",
+      "terms_checked_at": "2026-10-08T13:28:44.669559+00:00"
+    },
+    {
+      "source_id": "adecco",
+      "name": "Adecco",
+      "domain": "www.adecco.com",
+      "checked_at": "2026-10-08T13:22:19.401414+00:00",
+      "connected": false,
+      "probed_url": "https://www.adecco.com/robots.txt",
+      "rss_candidates": [],
+      "api_candidates": [],
+      "jobposting_nodes": 0,
+      "terms_candidates": [
+        "https://www.adecco.com/fr-fr/conditions-generales"
+      ],
+      "sitemaps": [
+        "https://www.adecco.com/sitemap.xml",
+        "https://www.adecco.com/jobsindex.xml",
+        "https://www.adecco.com/ja-jp/sitemap.xml"
+      ],
+      "robots_allowed_homepage": true,
+      "homepage_url": "https://www.adecco.com/fr-fr",
+      "terms_evidence": [
+        {
+          "url": "https://www.adecco.com/fr-fr/conditions-generales",
+          "excerpt": "Conditions d’utilisation Marques Adecco Medical Adecco Antilles Guyane Adecco Océan Indien Adecco Monaco Réseau Adecco Inclusion Qapa Marques du groupe Adecco A propos Qui sommes-nous Nos valeurs Espace presse Fondation Nos candidats parlent de nous Nos clients parlent de nous Adecco recrute pour Adecco Evénements et partenariats Partenaires Webinars Candidats Webinars Entreprises Evénements sportifs Aide et Contact Foire aux questions Nos agences Contact Candidat Contact Entreprise Informations réglementaires Code de conduite Données et droits Alerte professionelle Affichages obligatoires Mentions légales Conditions d’utilisation du site web Politique de confidentialité Politique des cookies Paramètres des cookies Sécurité et hameçonnage"
+        }
+      ],
+      "status": "terms_restricted",
+      "message": "Conditions récupérées dans les données publiques Next.js/Sitecore de la page ; extraction et réutilisation restreintes, collecte désactivée.",
+      "terms_url": "https://www.adecco.com/fr-fr/conditions-generales",
+      "restriction_quote": "Il vous est donc expressément interdit de procéder à toute reproduction, transformation, distribution ou communication publique, ou de mettre à disposition, d'extraire, de réutiliser, de réenvoyer ou d'utiliser de toute autre manière, par quelque moyen ou procédure que ce soit, toute partie du site Web ou du contenu, sauf dans les cas autorisés par les présentes conditions d'utilisation ou toute condition spéciale pertinente, ou lorsque vous êtes autorisé à le faire par la lo",
+      "terms_checked_at": "2026-10-08T13:38:21.834664+00:00",
+      "method_evidence": "Texte des CGU extrait des valeurs de __NEXT_DATA__ du document HTML déjà obtenu en HTTPS. Aucun accès candidat."
+    },
+    {
+      "source_id": "adequat",
+      "name": "Adéquat",
+      "domain": "www.lejobadequat.com",
+      "checked_at": "2026-10-08T13:22:19.401705+00:00",
+      "connected": false,
+      "probed_url": "https://www.lejobadequat.com/robots.txt",
+      "rss_candidates": [],
+      "api_candidates": [],
+      "jobposting_nodes": 0,
+      "terms_candidates": [],
+      "sitemaps": [
+        "https://www.lejobadequat.com/sitemap_index.xml"
+      ],
+      "robots_allowed_homepage": true,
+      "homepage_url": "https://www.lejobadequat.com/",
+      "terms_evidence": [],
+      "status": "terms_restricted",
+      "message": "Réutilisation/extraction restreinte par les conditions examinées ; collecte désactivée.",
+      "terms_url": "https://www.lejobadequat.com/mentions-legales",
+      "restriction_quote": "La reproduction des informations est autorisée à des fins exclusives d’information pour un usage personnel et privé. Toute reproduction et toute utilisation de copie réalisée à d’autres fins est expressément interdite et soumise à l’autorisation préalable et expresse de l’Editeur du Site Internet. Dans tous les cas, la reproduction autorisée des informations devra indiquer la source et la mention de propriété adéquates. 4.2. Signes distinctifs Sa",
+      "terms_checked_at": "2026-10-08T13:28:44.669686+00:00"
+    },
+    {
+      "source_id": "interaction",
+      "name": "Interaction",
+      "domain": "www.interaction-interim.com",
+      "checked_at": "2026-10-08T13:22:19.404295+00:00",
+      "connected": false,
+      "probed_url": "https://www.interaction-interim.com/robots.txt",
+      "rss_candidates": [],
+      "api_candidates": [],
+      "jobposting_nodes": 0,
+      "terms_candidates": [],
+      "sitemaps": [],
+      "robots_allowed_homepage": true,
+      "homepage_url": "https://www.interaction-interim.com/",
+      "terms_evidence": [],
+      "status": "terms_restricted",
+      "message": "Réutilisation/extraction restreinte par les conditions examinées ; collecte désactivée.",
+      "terms_url": "https://www.interaction-interim.com/mentions-legales",
+      "restriction_quote": "La reproduction et/ou la représentation de ces éléments ne sont autorisées qu'à des fins d'information pour un usage strictement personnel et privé. L'utilisation commerciale de ces éléments est interdite sauf éventuelle autorisation préalable de la société Interaction . (contact@interaction-interim.com ) 2.2.4.1 Est interdite la présentation d'une des pages du site www.interaction-interim.com dans une page web n'appartenant pas à ce dernier (fra",
+      "terms_checked_at": "2026-10-08T13:28:44.669745+00:00"
+    },
+    {
+      "source_id": "crit",
+      "name": "Crit",
+      "domain": "www.crit-job.com",
+      "checked_at": "2026-10-08T13:22:21.448790+00:00",
+      "connected": false,
+      "probed_url": "https://www.crit-job.com/robots.txt",
+      "rss_candidates": [
+        "https://www.crit-job.com/feed/",
+        "https://www.crit-job.com/comments/feed/"
+      ],
+      "api_candidates": [],
+      "jobposting_nodes": 0,
+      "terms_candidates": [
+        "https://www.crit-job.com/conditions-generales-utilisation/"
+      ],
+      "sitemaps": [
+        "https://www.crit-job.com/sitemap_index.xml",
+        "https://www.crit-job.com/agences/sitemap.xml",
+        "https://www.crit-job.com/offres/sitemap.xml"
+      ],
+      "robots_allowed_homepage": true,
+      "homepage_url": "https://www.crit-job.com/",
+      "terms_evidence": [
+        {
+          "url": "https://www.crit-job.com/conditions-generales-utilisation/",
+          "excerpt": "Conditions générales d'utilisation - Crit Aller au contenu Candidat Entreprise Actualités Trouver mon agence Connexion Offres d'emploi Travailler avec Crit Nos métiers Vos avantages Intérim CDD CDI Tous nos contrats Industrie Logistique Tertiaire Tous nos secteurs Logement Mobilité Crédit Tous nos avantages Nos solutions Intérim CDD-CDI CDII Tous nos contrats Nos métiers Industrie Logistique Tertiaire Tous nos secteurs Choisir CRIT Expertise terrain et accompagnement sur-mesure pour vos recrutements. En savoir plus Besoin d'aide ? Notre équipe vous accompagne dans vos recrutements. Nous contacter Candidat Entreprise Actualités Trouver mon agence Connexion Accueil › Conditions générales d’utilisation Conditions générales d’utilisation Les présentes Conditions Générales d’Utilisation ont pour objet de définir les modalités d’utilisation des services accessibles sur le site internet www.crit-job.com et via l’application mobile CRIT (disponible en téléchargement sur Android et IOS). Votre acceptation des présentes Conditions Générales d’Utilisation est un préalable indispensable et obligatoire à l’utilisation des Services CRIT. Nous vous invitons donc à les lire attentivement. 1. Définitions « Application » : désigne l’application mobile de CRIT (disponible en téléchargement sur Android et IOS). « CGU » : désigne les présentes Conditions Générales d’Utilisation. « CRIT » : désigne la société CRIT, SAS au capital de 148.229.000 €, dont le siège social est situé au 6 rue Toulouse Lautrec 75017 paris, immatriculée au RCS de Paris sous le numéro 451 329 908. CRIT sera également désignée dans les présentes comme ci-après « Nous ». « Pôle Travail Temporaire et Recrutement » : désignent les sociétés CRIT, SAS au capital de 148.229.000 €, dont le siège social est situé au 6 rue Toulouse Lautrec 75017 paris, immatriculée au RCS de Paris sous le numéro 451 329 908 ; AB Intérim, SARL au capital de 23.000 €, dont le siège social est situé 6 rue Toulouse Lautrec 75017 paris, immatriculée au RCS de Paris sous le numéro 642 009 583 ; Les Volants, SAS au capital de 320.200 €, dont le siège social est situé 6 rue Toulouse Lautrec 75017 paris, immatriculée au RCS de Paris sous le numéro 301 938 817 ; Les Compagnons, SARL au capital de 46.000 €, dont le siège social est situé 6 rue Toulouse Lautrec 75017 paris, immatriculée au RCS de Paris sous le numéro 309 979 631. « Services » et « Services CRIT » : désigne les fonctionnalités et services proposés sur le Site et via l’application mobile CRIT. « Site » : désigne le site internet www.crit-job.com de CRIT. « Utilisateur » : désigne toute personne physique ou morale souhaitant accéder aux Services, et notamment mais sans s’y limiter, tout salarié intérimaire accédant aux Services CRIT. 2. Descriptif des Services CRIT Les Services proposés sur le Site et via l’Application sont destinés aux Utilisateurs. Nous nous réservons la possibilité de modifier, d’améliorer et d’enrichir les Services proposés sur le Site et par l’Application à tout moment. a. Service consultation des offres d’emploi Ce Service est destiné à tout Utilisateur naviguant sur le Site et/ou ayant téléchargé l’Application et souhaitant consulter les offres d’emploi publiées sur notre Site et notre Application. L’utilisation du Service de consultation des offres d’emploi proposée par le Site et l’Application peut nécessiter l’usage de données de géolocalisation, notamment la position géographique de votre ordinateur, tablette ou tout appareil informatique ou de votre équipement mobile. Votre position géographique permet de trouver des offres d’emploi près de chez vous. Pour bénéficier de cette fonctionnalité, vous devez y consentir. Vous pouvez ensuite retirer votre consentement à tout moment en modifiant : Pour l’Application : les paramètres relatifs à l’Application dans l’application « paramètres » de votre équipement mobile. Pour le Site : les paramètres relatifs au Site dans le menu « paramètres » de votre navigateur de référence. b. Service dédié candidat Ce Service est destiné à tout Utilisateur ayant créé son compte sur le Site ou sur l’Application et souhaitant postuler aux offres d’emploi publiées sur notre Site et/ou sur notre Application. Ce Service s’ajoute au Service de consultation des offres d’emploi. Descriptif Le Service dédié candidat vous permet de créer un espace CRIT vous permettant de : Compléter votre profil (coordonnées, …). Consulter et/ou télécharger votre CV, modifier votre CV. Postuler aux offres d’emplois proposées sur le Site et sur l’Application. Consulter vos candidatures effectuées sur le Site et sur l’Application. Recevoir des alertes d’emplois en fonction du type de métier, d’une zone géographique, de la typologie du contrat de travail souhaité et d’une périodicité à définir (jour, semaine ou mois). Les alertes créées peuvent être supprimées directement dans l’onglet associé à cette fonctionnalité sur le Site et/ou sur l’Application. c. Service dédié intérimaire Ce Service est destin"
+        }
+      ],
+      "status": "terms_restricted",
+      "message": "Réutilisation/extraction restreinte par les conditions examinées ; collecte désactivée.",
+      "terms_url": "https://www.crit-job.com/conditions-generales-utilisation/",
+      "restriction_quote": "toute reproduction, totale ou partielle, et toute représentation du contenu du Site et de l’Application mobile CRIT, d’un ou de plusieurs des éléments protégés, par quelque procédé que ce soit, sans autorisation expresse de CRIT est interdite, et constitue une contrefaçon sanctionnée par les articles L.335-2 et suivants du Code de la propriété intellectuelle. Responsabilité Nous ne garantissons pas que les informations contenues sur le Site et/ou",
+      "terms_checked_at": "2026-10-08T13:28:44.669849+00:00"
+    },
+    {
+      "source_id": "samsic",
+      "name": "Samsic",
+      "domain": "www.samsic-emploi.fr",
+      "checked_at": "2026-10-08T13:22:21.482179+00:00",
+      "connected": false,
+      "probed_url": "https://www.samsic-emploi.fr/robots.txt",
+      "rss_candidates": [],
+      "api_candidates": [],
+      "jobposting_nodes": 0,
+      "terms_candidates": [
+        "https://www.samsic-emploi.fr/cgu"
+      ],
+      "sitemaps": [
+        "https://www.samsic-emploi.fr/sitemap.xml"
+      ],
+      "robots_allowed_homepage": true,
+      "homepage_url": "https://www.samsic-emploi.fr/",
+      "terms_evidence": [
+        {
+          "url": "https://www.samsic-emploi.fr/cgu",
+          "excerpt": "Conditions Générales d'Utilisation - Samsic Emploi Aller au contenu principal Samsic menu principal Offres d'emploi Fiches métiers Conseils candidats Nos agences Je suis une entreprise Je cherche un emploi Se connecter Je suis une entreprise Mot clé : Lieu : Contrat : CDD CDI CDII (CDI intérimaire) Interim Job étudiant Stage/Alternance Accueil Conditions Générales d'Utilisation Conditions Générales d'Utilisation CONDITIONS GÉNÉRALES D'UTILISATION DU SITE \"SAMSIC EMPLOI\" Article 1 : Définitions Cabinet de Recrutement : désigne l’entreprise de placement de personnel au profit de laquelle le Site est mis à la disposition par l’Éditeur et qui met en relation l’Utilisateur Candidat avec des entreprises qui recrutent. CGU : désigne les présentes Conditions Générales d’Utilisation du Site. Coffre-Fort Numérique : désigne l’espace personnel sécurisé de dépôt et stockage de documents contractuels, légaux et personnels accessible via le Compte dès lors que les Services de Dématérialisation sont activés par l’Utilisateur Candidat Intérimaire. Compte : désigne l’espace personnel réservé à l’Utilisateur, l’Utilisateur Candidat ou l’Utilisateur Candidat Intérimaire accessible par un identifiant et un mot de passe contenant (i) ses informations personnelles nécessaires à la création du compte (Nom, Prénom, adresse mail ….) et (ii) le Coffre-Fort Numérique. Éditeur : désigne le propriétaire du contenu du Site tel qu’identifié nominativement à l’article 4 des présentes CGU. ETT : désigne l’entreprise de travail temporaire qui emploie le salarié intérimaire et au profit de laquelle le Site est mis à disposition pour l’exercice de ses activités et relations avec le salarié intérimaire. Groupe SAMSIC : désigne la société Samsic, société par actions simplifiée au capital de 45.000.000 euros dont le siège social est situé à La Rigourdière, 6 rue de Châtillon, 35510 Cesson-Sévigné et immatriculée au greffe du Tribunal de Commerce de Rennes sous le numéro 403 227 796 et ses filiales au sens de l’article L.233 du Code de commerce. Inscription : désigne l’action permettant à l’Utilisateur, l’Utilisateur Candidat ou l’Utilisateur Candidat Intérimaire d’accéder à certains services par la création de son Compte. Intérimaire : désigne le salarié intérimaire de l’ETT. Services : désignent les services accessibles via le Site dont la liste figure à l’article 8 des CGU. Services de Dématérialisation : désigne les services tels que décrits à l’article 8 des CGU « Services de Dématérialisation » activés par l’Utilisateur Candidat Intérimaire automatiquement via la création de son Compte. Les Services de Dématérialisation permettent que toute communication, transmission et tout échange entre l’Utilisateur Candidat Intérimaire et l’ETT se fasse par voie électronique. L’activation des Services de Dématérialisation vaut consentement (i) à la dématérialisation des documents contractuels entre le l’ETT et l’Utilisateur Candidat Intérimaire et (ii) à leur signature électronique. Site : désigne le site internet de l’Éditeur disponible à l’adresse suivante : www.samsic-emploi.fr. Utilisateur : désigne toute personne physique ou morale utilisant le Site. Utilisateur Candidat : désigne tout Utilisateur, personne physique non-professionnelle, ayant procédé à son Inscription n’ayant pas la qualité d’Intérimaire. Utilisateur Candidat Intérimaire : désigne tout Utilisateur, personne physique non-professionnelle, ayant procédé à son Inscription ayant la qualité d’Intérimaire et utilisant les Services en qualité d’Intérimaire. Article 2 : Préambule L’Éditeur appartient au Groupe SAMSIC et met à disposition des filiales du Groupe ayant pour activité le placement de personnel (défini aux présentes par le terme « Cabinet de Recrutement ») et la mise à disposition de personnel temporaire (défini aux présentes par le terme « ETT »), le Site dans la gestion de leurs relations avec les candidats et les intérimaires. L’Éditeur n’est pas l’entreprise de placement de personnel, ni l’employeur des salariés intérimaires. L’Éditeur n’est pas une entreprise de travail temporaire. Il n’est pas lié par les documents contractuels qui régissent les relations entre : - La société de placement de personnel et le candidat ; - L’entreprise de travail temporaire et le salarié intérimaire. Article 3 : Objet -acceptation Les CGU ont vocation à régir l'utilisation du Site, et des Services qui y sont accessibles par l’Utilisateur. Le cas échéant certains services accessibles via le Site peuvent être soumis à des conditions spécifiques additionnelles. Toute utilisation du Site sera réputée de plein droit être intervenue sur le territoire français. La navigation sur le Site vaut acceptation sans réserve des CGU par l’Utilisateur dont celui-ci déclare avoir eu connaissance et qu’il déclare avoir lu dans leur intégralité. Les CGU entrent en vigueur à la date figurant en en-tête et la version actuellement en ligne des CGU est la seule opposable pendant toute la durée d'utilisation du Site "
+        }
+      ],
+      "status": "terms_restricted",
+      "message": "Réutilisation/extraction restreinte par les conditions examinées ; collecte désactivée.",
+      "terms_url": "https://www.samsic-emploi.fr/cgu",
+      "restriction_quote": "l’utilisation de systèmes automatisés ou de logiciels pour extraire des données du Site, en particulier tout contenu y figurant, (captures de données d’écran, screen scraping, web scraping sans que cette liste ne soit exhaustive), à quelques fins que ce soit, commerciales ou non ; est strictement interdite, sauf accord de licence d’exploitation conclue avec l’Éditeur ou tout titulaire des droits. Le fait pour l'Éditeur de ne pas engager de procéd",
+      "terms_checked_at": "2026-10-08T13:28:44.670047+00:00"
+    },
+    {
+      "source_id": "proman",
+      "name": "Proman",
+      "domain": "www.proman-emploi.fr",
+      "checked_at": "2026-10-08T13:22:23.696412+00:00",
+      "connected": false,
+      "probed_url": "https://www.proman-emploi.fr/robots.txt",
+      "rss_candidates": [],
+      "api_candidates": [
+        "https://www.proman-emploi.fr/graphql"
+      ],
+      "jobposting_nodes": 0,
+      "terms_candidates": [],
+      "sitemaps": [],
+      "robots_allowed_homepage": true,
+      "homepage_url": "https://www.proman-emploi.fr/",
+      "terms_evidence": [],
+      "status": "terms_restricted",
+      "message": "Réutilisation/extraction restreinte par les conditions examinées ; collecte désactivée.",
+      "terms_url": "https://www.proman-emploi.fr/cgu",
+      "restriction_quote": "Toute reproduction totale ou partielle de ce contenu est strictement interdite et est susceptible d’engager la responsabilité pénale et civile de son auteur. La violation de l'un des droits d'auteur de l'œuvre est un délit de contrefaçon passible, aux termes de l'article L.335-2 du Code de la Propriété Intellectuelle, d’une amende de 300 000 € et d’une peine d’emprisonnement de trois années. L’Utilisateur demeure titulaire et resp",
+      "terms_checked_at": "2026-10-08T13:28:44.670493+00:00",
+      "method_evidence": "POST GraphQL public : urlResolver et cmsPage des CGU réussis, sans identifiant ni connexion. Aucune collecte d’offres effectuée après constat des restrictions."
+    },
+    {
+      "source_id": "advance",
+      "name": "Advance Emploi",
+      "domain": "www.advance-emploi.com",
+      "checked_at": "2026-10-08T13:22:23.853131+00:00",
+      "connected": false,
+      "probed_url": "https://www.advance-emploi.com/robots.txt",
+      "rss_candidates": [],
+      "api_candidates": [],
+      "jobposting_nodes": 0,
+      "terms_candidates": [],
+      "sitemaps": [],
+      "status": "network_blocked",
+      "message": "Accès refusé par le proxy cloud."
+    },
+    {
+      "source_id": "partnaire",
+      "name": "Partnaire",
+      "domain": "www.partnaire.fr",
+      "checked_at": "2026-10-08T13:22:23.871295+00:00",
+      "connected": false,
+      "probed_url": "https://www.partnaire.fr/robots.txt",
+      "rss_candidates": [
+        "https://www.partnaire.fr/feed/"
+      ],
+      "api_candidates": [],
+      "jobposting_nodes": 0,
+      "terms_candidates": [
+        "https://www.partnaire.fr/conditions-generales-dutilisation/"
+      ],
+      "sitemaps": [
+        "https://www.partnaire.fr/sitemap_index.xml"
+      ],
+      "robots_allowed_homepage": true,
+      "homepage_url": "https://www.partnaire.fr/",
+      "terms_evidence": [
+        {
+          "url": "https://www.partnaire.fr/conditions-generales-dutilisation/",
+          "excerpt": "Agence d'intérim, Partnaire. ⋆ CGU Compte personnel Aller au contenu Nos offres Nos agences Vos avantages Nos conseils Espace entreprise Mon compte Nos offres Nos agences Vos avantages Nos conseils Espace entreprise Mon compte Accueil Conditions générales d’utilisation du Compte Personnel Conditions générales d’utilisation du Compte Personnel Objet Le Groupe PARTNAIRE met à votre disposition un compte personnel (le « Compte Personnel ») afin de vous permettre de gérer de façon dématérialisée votre candidature et vos emplois au sein du Groupe PARTNAIRE. Ce compte permet de partager vos informations et documents avec les agences du Groupe PARTNAIRE aux fins d’optimiser les échanges et nous permettre de vous proposer le plus efficacement possible les offres adaptées à vos compétences. Les présentes conditions générales d’utilisation (ci-après les « CGU ») ont pour objet d’encadrer les conditions d’utilisation de votre compte personnel. Les fonctionnalités du Compte Personnel Votre Compte Personnel vous permet de : Créer votre dossier de candidature ; Télécharger les pièces justificatives nécessaires ; Modifier vous-même certaines informations de votre dossier en cas de changement de situation (adresse, situation de famille, etc.) Le Compte Personnel est un espace partagé : les informations que vous y déposez sont accessibles par les agences PARTNAIRE. Les agences peuvent vérifier et valider ces informations, et elles peuvent mettre à jour votre dossier. Elles peuvent également renseigner directement votre dossier en agence si vous le souhaitez. Vos engagements Vous garantissez que les renseignements et pièces que vous téléchargez sur votre Compte Personnel sont exacts et sincères, et vous êtes informé que toute fausse déclaration ou production de justificatifs falsifiés engage votre responsabilité et est passible de poursuites pénales. Le mot de passe qui vous permet d’accéder à votre Compte Personnel est personnel et confidentiel. Vous devez assurer cette confidentialité sous votre propre responsabilité, PARTNAIRE ne pouvant en aucun cas être responsable d’un accès à votre dossier par un tiers ayant utilisé votre mot de passe personnel. Vous vous interdisez toute action susceptible d’affecter le fonctionnement du site internet supportant votre Compte Personnel telle que, par exemple, tentative d’intrusion ou de corruption de données, attaque en déni de service, ou de façon générale toute action susceptible d’en affecter la disponibilité ou l’intégrité. Communication par e-mail Vous acceptez expressément l’utilisation de votre adresse e-mail pour toute communication avec PARTNAIRE. Disponibilité du Compte Personnel Votre Compte Personnel est disponible 7j/7 et 24h/24 avec un taux de disponibilité élevé. Vous reconnaissez néanmoins que des aléas techniques peuvent se produire et empêcher le fonctionnement normal du Compte Personnel. Vous serez en tout état de cause informé dans la mesure du possible, par une mention sur le site, de toute indisponibilité programmée. Résiliation – Suspension En cas de non-respect avéré des présentes CGU, PARTNAIRE pourra résilier ou suspendre, à sa seule convenance, votre accès à votre Compte Personnel. La résiliation ou la suspension vous sera notifiée par e-mail. Application des CGU – Versioning – Accès aux CGU Vous êtes invité à imprimer, à télécharger et à conserver ces CGU sur tout support durable de votre choix. Lors d’un changement de version des CGU, vous en serez averti par e-mail et vous devrez accepter les nouvelles versions de CGU pour continuer à utiliser votre Compte Personnel. Protection des données personnelles PARTNAIRE s’engage à ce que la collecte et le traitement de vos données personnelles soient conformes à la loi Informatique et Libertés (Loi n°78-17 du 6 janvier 1978), incluant le Règlement Général sur la Protection des Données (Règlement (UE) 2016/679). Nous vous invitons à consulter notre Politique de Confidentialité des Données . Vous trouverez dans cette Politique toutes les informations nécessaires à la compréhension des traitements de vos données personnelles, à vos droits, et à la façon de les exercer. Propriété intellectuelle L’apparence du site, l’arrangement des contenus, ainsi que les textes, logo, marque, photo, etc. figurant sur le site sont, à l’exception des informations que vous avez vous-même déposées, la propriété exclusive de PARTNAIRE ou de ses ayants droits. Vous vous interdisez toute réutilisation, modification, ou reproduction de ces éléments, à peine de contrefaçon, passible de sanctions civiles et pénales. Dispositions applicables en cas de résiliation / dénonciation de votre compte personnel Votre Compte Personnel peut être fermé soit parce que vous en faites la demande à PARTNAIRE en envoyant un courrier recommandé à l’adresse figurant en bas de cette page et PARTNAIRE vous notifiera par e-mail la prise en compte de votre demande, soit en application de l’article 6. Responsabilité La société PARTNAIRE n’est en aucun cas responsab"
+        }
+      ],
+      "status": "terms_restricted",
+      "message": "Réutilisation/extraction restreinte par les conditions examinées ; collecte désactivée.",
+      "terms_url": "https://www.partnaire.fr/conditions-generales-dutilisation/",
+      "restriction_quote": "Vous vous interdisez toute réutilisation, modification, ou reproduction de ces éléments, à peine de contrefaçon, passible de sanctions civiles et pénales. Dispositions applicables en cas de résiliation / dénonciation de votre compte personnel Votre Compte Personnel peut être fermé soit parce que vous en faites la demande à PARTNAIRE en envoyant un courrier recommandé à l’adresse figurant en bas de cette page et PARTNAIRE vous notifiera par e-mail",
+      "terms_checked_at": "2026-10-08T13:28:44.670681+00:00"
+    },
+    {
+      "source_id": "mistertemp",
+      "name": "Mistertemp'",
+      "domain": "www.mistertemp.com",
+      "checked_at": "2026-10-08T13:22:24.544259+00:00",
+      "connected": false,
+      "probed_url": "https://www.mistertemp.com/robots.txt",
+      "rss_candidates": [
+        "https://www.mistertemp.com/feed/",
+        "https://www.mistertemp.com/comments/feed/"
+      ],
+      "api_candidates": [],
+      "jobposting_nodes": 0,
+      "terms_candidates": [
+        "https://www.mistertemp.com/conditions-generales/"
+      ],
+      "sitemaps": [
+        "https://www.mistertemp.com/sitemap_index.xml"
+      ],
+      "robots_allowed_homepage": true,
+      "homepage_url": "https://www.mistertemp.com/",
+      "terms_evidence": [
+        {
+          "url": "https://www.mistertemp.com/conditions-generales/",
+          "excerpt": "Conditions générales - Mistertemp' Voir nos missions Espace candidat Devenez Partenaire indépendant Espace entreprise Je me connecte Je suis recruteur Je suis candidat Contact Voir nos missions Espace candidat Devenez Partenaire indépendant Espace entreprise L'intérim en toute confiance Nos conditions générales d'utilisation 1. Objet Les présentes conditions générales d’utilisation (ou « CGU ») ont pour objet de définir les modalités et conditions d’utilisation des services proposés sur le site www.mistertemp.com (ci-après : le « Site ») ainsi que sur l’application afférente (ci-après : les « Services »), ainsi que de définir les droits et obligations des parties dans ce cadre. Elles sont notamment accessibles et imprimables à tout moment par un lien direct en bas de la page d’accueil du Site. Elles peuvent être complétées, le cas échéant, par des conditions d’utilisation particulières à certains Services. En cas de contradiction, les conditions particulières prévalent sur ces conditions générales. L’utilisation des fonctionnalités du Site ainsi que celle des offres et services afférents implique l’acceptation expresse par l’Utilisateur des présentes conditions générales d’utilisation sans restriction ni réserve. 2. Exploitant des Services – Mentions légales Les Services sont exploités par la société MISTERTEMP, société par actions simplifiée au capital social de 2 715 000 euros, immatriculée au RCS de Nanterre sous le n°821 761 186, dont le siège social est situé 12 boulevard Victor Hugo à (92110) Clichy (ci-après : « MisterTemp’ »). MisterTemp’ peut être contactée aux coordonnées suivantes : Adresse postale : 12 boulevard Victor Hugo à (92110) Clichy Adresse électronique : contact@mistertemp.com 3. Accès au site et aux services Les Services sont accessibles, sous réserve des restrictions prévues sur le Site : à toute personne physique disposant de la pleine capacité juridique pour s’engager au titre des présentes conditions générales. La personne physique qui ne dispose pas de la pleine capacité juridique ne peut accéder au Site et aux Services qu’avec l’accord de son représentant légal ; à toute personne morale agissant par l’intermédiaire d’une personne physique disposant de la capacité juridique pour contracter au nom et pour le compte de la personne morale. Ces personnes sont définies par le terme « Utilisateur ». MisterTemp’ s’engage à mettre tous les moyens en œuvre afin d’assurer une continuité d’accès et d’utilisation du Site, sept jours sur sept, 24h sur 24h. Cette obligation étant une obligation de moyens, MisterTemp’ ne pourra être tenue responsable en cas d’indisponibilité du Site, pour quelque raison que ce soit. 4. Acceptation des conditions générales d’utilisation L’acceptation des présentes conditions générales d’utilisation est matérialisée par une case à cocher dans le formulaire d’inscription. Cette acceptation ne peut être que pleine et entière. Toute adhésion sous réserve est considérée comme nulle et non avenue. L’Utilisateur qui n’accepte pas d’être lié par les présentes conditions générales d’utilisation ne doit pas utiliser les Services. 5. Inscription sur le Site L’utilisation des Services nécessite que l’Utilisateur s’inscrive sur le Site, en remplissant le formulaire prévu à cet effet. L’Utilisateur doit fournir l’ensemble des informations marquées comme obligatoires. Toute inscription incomplète ne sera pas validée. L’inscription entraîne automatiquement l’ouverture d’un compte (ci-après : le « Compte »), et d’un espace personnel (ci-après : l’ « Espace Personnel ») au nom de l’Utilisateur qui lui permet de gérer son utilisation des Services sous une forme et selon les moyens techniques que MisterTemp’ juge les plus appropriés pour rendre lesdits Services. L’Utilisateur garantit que toutes les informations qu’il donne dans le formulaire d’inscription sont exactes, à jour et sincères et ne sont entachées d’aucun caractère trompeur. Il s’engage à mettre à jour ces informations dans son Espace Personnel en cas de modifications, afin qu’elles correspondent toujours aux critères susvisés. L’Utilisateur est informé et accepte que les informations saisies aux fins de création ou de mise à jour de son Compte vaillent preuve de son identité. Les informations saisies par l’Utilisateur l’engagent dès leur validation. Si MisterTemp’ constate que les informations saisies par l’Utilisateur sont erronées, les sanctions énoncées à l’article 11 pourront être amenées à s’appliquer. 6. Services payants Certains des Services fournis sur le Site sont fournis à titre payant. 6.1 Prix Le prix des Services est indiqué sur le Site. Sauf mention contraire, ils sont exprimés en euros et toutes taxes françaises comprises. MisterTemp’ se réserve le droit, à sa libre discrétion et selon des modalités dont elle sera seule juge, de proposer des offres promotionnelles ou réductions de prix. 6.2 Révision des prix Le prix de Services peut faire l’objet d’une révision par MisterTemp’ à tout moment, à sa libre di"
+        }
+      ],
+      "status": "terms_restricted",
+      "message": "Réutilisation/extraction restreinte par les conditions examinées ; collecte désactivée.",
+      "terms_url": "https://www.mistertemp.com/conditions-generales/",
+      "restriction_quote": "Tous désassemblages, décompilations, décryptages, extractions, réutilisations, copies et plus généralement, tous actes de reproduction, représentation, diffusion et utilisation de l’un quelconque de ces éléments, en tout ou partie, sans l’autorisation de MisterTemp’ sont strictement interdits et pourront faire l’objet de poursuites judiciaires. 14. Données à caractère personnel MisterTemp’ pratique une politique de protection des données personne",
+      "terms_checked_at": "2026-10-08T13:28:44.670854+00:00"
+    },
+    {
+      "source_id": "gojob",
+      "name": "Gojob",
+      "domain": "www.gojob.com",
+      "checked_at": "2026-10-08T13:22:24.934036+00:00",
+      "connected": false,
+      "probed_url": "https://www.gojob.com/robots.txt",
+      "rss_candidates": [
+        "https://gojob.com/feed/",
+        "https://gojob.com/comments/feed/"
+      ],
+      "api_candidates": [],
+      "jobposting_nodes": 0,
+      "terms_candidates": [
+        "https://gojob.com/cgu-cgv/",
+        "https://gojob.com/nos-conseils/conditions-de-travail/"
+      ],
+      "sitemaps": [
+        "https://gojob.com/sitemap_index.xml"
+      ],
+      "robots_allowed_homepage": true,
+      "homepage_url": "https://gojob.com/",
+      "terms_evidence": [
+        {
+          "url": "https://gojob.com/cgu-cgv/",
+          "excerpt": "Conditions générales d'utilisation et mentions légales de Gojob Aller au contenu Intérimaires Mon Cash Découvrez Mon Cash, le service de demande d’acompte de Gojob et de CET Conseils & Astuces Salaire Conditions de travail Emploi Questions juridiques Focus métier Avantages intérim Témoignages Découvrez les témoignages de nos Gojobbers. Trouvez votre prochaine mission Des milliers d'pportunités partout en France, accessibles en un clic. Voir les missions Entreprises Des intérimaires qualifiés, disponibles rapidement, avec un pilotage simple et efficace. Découvrir Gojob Intérim Automatisez le tri, la qualification et la prise de rendez-vous grâce à notre plateforme d’IA. Découvrir Gojob Talent Notre technologie À propos Qui sommes-nous ? Médias Gojob recrute Français Anglais Trouvez une mission Trouvez une mission Accueil Conditions d’Utilisation Accueil Conditions d’Utilisation Intérimaires Mon Cash Conseils & Astuces Témoignages Entreprises Gojob Intérim Gojob Talent Notre technologie à propos Qui sommes-nous Médias Gojob recrute Trouvez une mission Trouvez une mission Trouvez votre mission d’interim Conditions générales d’utilisation Merci de lire attentivement les présentes conditions générales d’utilisation car elles contiennent des informations importantes concernant les droits et obligations des Utilisateurs. Elles incluent différentes limitations et exclusions, ainsi que des obligations relatives au respect des lois et réglementations applicables. Version actuelle publiée le 06/02/2019. Version actuelle entrée en vigueur le 16/02/2019 1. Objet La société Gojob S.A.S. (ci-après, « Gojob ») édite une plateforme de mise en relation de travailleurs temporaires et de Clients accessible sur un site internet notamment à l’adresse www.gojob.com ou sous forme d’application mobile et destinée à mettre en relation des travailleurs cherchant des missions de travail temporaire et des Clients cherchant des ressources (ci-après, la « Plateforme »). Les présentes conditions générales d’utilisation ont pour objet d’encadrer l’accès et les modalités d’utilisation de la Plateforme. Nous vous invitons à en prendre attentivement connaissance. L’Utilisateur ne peut utiliser le Service sans avoir préalablement pris connaissance et accepté les CGU lors de son inscription sur le Site. 2. Définitions Annonce : désigne une offre d’emploi au sein d’un Client, proposée par le biais du Site, de l’Application ou des Services. Gojob, « nous » ou « notre » : désigne Gojob SAS, immatriculée au RCS d’Aix-en-Provence sous le numéro 813 454 717, ou une de ses filiales. Client : désigne une personne morale ou physique qui cherche une ressource pour effectuer une Mission. Membre ou « vous » désigne un Utilisateur inscrit sur le Site, l’Application ou les Services et ayant accepté les CGU. Mission : désigne la tâche spécifique confiée par une Client à un Travailleur. Travailleur : désigne une personne physique ou morale qui souhaite postuler à une Annonce et ou effectuer une Mission. Utilisateur : désigne une personne morale ou physique qui utilise le Site, l’Application ou les Services. Gojob met à disposition une plateforme en ligne destinée à permettre le conseil, la mise en relation et la contractualisation (ci-après, collectivement, les « Services ») entre, d’une part, les personnes physiques ou morales cherchant des ressources pour effectuer des missions (ci-après les « Clients ») et, d’autre part, les personnes physiques ou morales cherchant une mission (ci-après les « Travailleurs »). Ces Services sont accessibles notamment via un site Internet dénommé « Gojob », accessible à l’adresse www.gojob.com/ et sous forme d’application pour appareil mobiles dénommées « Gojob » (ci-après l’ « Application »). Les Clients, les Travailleurs et plus généralement toutes les personnes utilisant les Services via le Site ou via les Applications sont désignés les « Utilisateurs ». Les Utilisateurs et Gojob sont ensemble désignés les « Parties ». L’ « Espace-Membre » correspond à l’espace privé du Site réservé à chaque Utilisateur après inscription au Site et acceptation des Conditions Générales d’Utilisation (ci-après les « CGU »). Il est accessible en se connectant avec les Codes d’identification. 3. Modification Gojob fait évoluer les caractéristiques et les fonctionnalités du Site, de l’Application et des Services pour assurer leur fonctionnement et leur qualité. Gojob pourra apporter unilatéralement et sans préavis des modifications aux CGU liées à l’évolution technique, dès lors qu’il n’en résulte ni augmentation du prix, ni altération de la qualité et que les caractéristiques auxquelles le Membre a subordonné son engagement ont pu figurer dans les présentes CGU. La version la plus récente des CGU annule et remplace les versions antérieures. 4. Inscription au Site 4.1 Conditions d’inscription à la plateforme L’utilisation de Plateforme est réservée aux personnes physiques âgées de 18 ans ou plus. Toute inscription sur la Plateforme par une perso"
+        },
+        {
+          "url": "https://gojob.com/nos-conseils/conditions-de-travail/",
+          "excerpt": "À lire : tous nos articles sur les conditions de travail en intérim Aller au contenu Intérimaires Mon Cash Découvrez Mon Cash, le service de demande d’acompte de Gojob et de CET Conseils & Astuces Salaire Conditions de travail Emploi Questions juridiques Focus métier Avantages intérim Témoignages Découvrez les témoignages de nos Gojobbers. Trouvez votre prochaine mission Des milliers d'pportunités partout en France, accessibles en un clic. Voir les missions Entreprises Des intérimaires qualifiés, disponibles rapidement, avec un pilotage simple et efficace. Découvrir Gojob Intérim Automatisez le tri, la qualification et la prise de rendez-vous grâce à notre plateforme d’IA. Découvrir Gojob Talent Notre technologie À propos Qui sommes-nous ? Médias Gojob recrute Français Trouvez une mission Trouvez une mission Intérimaires Mon Cash Conseils & Astuces Témoignages Entreprises Gojob Intérim Gojob Talent Notre technologie à propos Qui sommes-nous Médias Gojob recrute Trouvez une mission Trouvez une mission Trouvez votre mission d’interim Accueil » Nos conseils » Conditions de travail Bien-être et productivité au travail en intérim Conditions de travail Travailler en intérim, comment ça se passe ? Exercer son métier dans un bon environnnement est nécessaire pour garder la forme, physique et mentale. On vous éclaire sur les conditions de travail en intérim . Avantages Intérim Focus métier Emploi Salaire Questions juridiques Les conditions de travail d’un salarié en intérim Focus sur les conditions de travail d'un salarié en intérim. Lire la suite Comment sont déterminées de bonnes conditions de travail ? Quels sont les critères légaux qui déterminent de bonnes conditions de travail ? Lire la suite L’intérim, comment ça marche ? On vous explique tout sur le fonctionnement de l'intérim de A à Z. Lire la suite Vous êtes intérimaire et vous avez des questions ? Contactez notre assistant virtuel Accédez à des milliers d'offres d'emploi en intérim près de chez vous et postulez en quelques clics aux missions d'intérim qui vous intéressent. Recherches fréquentes Agence d’intérim à Biarritz Agence d’intérim à Bordeaux Agence d’intérim à Caen Agence d’intérim à Lille Agence d’intérim à Lyon Agence d’intérim à Mans Agence d’intérim à Marseille Agence d’intérim à Metz Agence d’intérim à Montbéliard Agence d’intérim à Mulhouse Agence d’intérim à Nancy Agence d’intérim à Nantes Agence d’intérim à Nice Agence d’intérim à Paris Agence d’intérim à Rennes Agence d’intérim à Toulon Agence d’intérim à Toulouse Téléchargez l'application ©Gojob 2026 - Tous droits réservés Mentions légales Politique de conf. Clients Politique de conf. Intérimaires CGU Gérer les cookies Défiler vers le haut"
+        }
+      ],
+      "status": "terms_restricted",
+      "message": "Réutilisation/extraction restreinte par les conditions examinées ; collecte désactivée.",
+      "terms_url": "https://gojob.com/cgu-cgv/",
+      "restriction_quote": "tout Utilisateur s’interdit de procéder à toute extraction du contenu du Site pour une activité similaire ou concurrente, ou à des fins de recrutement. 10.5 Le Client s’engage à proposer une offre de Mission sérieuse et suffisamment détaillée au(x) Travailleur(s) avec le(s)quel(s) il rentre en contact par le biais du Site en vue d’obtenir une proposition tarifaire. A ce titre, le Client s’engage à apporter au Travailleur toute précision nécessair",
+      "terms_checked_at": "2026-10-08T13:28:44.671220+00:00"
+    },
+    {
+      "source_id": "randstad",
+      "name": "Randstad",
+      "domain": "www.randstad.fr",
+      "checked_at": "2026-10-08T13:22:27.276059+00:00",
+      "connected": false,
+      "probed_url": "https://www.randstad.fr/robots.txt",
+      "rss_candidates": [],
+      "api_candidates": [],
+      "jobposting_nodes": 0,
+      "terms_candidates": [],
+      "sitemaps": [
+        "https://www.randstad.fr/sitemaps/sitemap.xml"
+      ],
+      "robots_allowed_homepage": true,
+      "homepage_url": "https://www.randstad.fr/",
+      "terms_evidence": [],
+      "status": "terms_restricted",
+      "message": "Réutilisation/extraction restreinte par les conditions examinées ; collecte désactivée.",
+      "terms_url": "https://www.randstad.fr/mentions-legales/",
+      "restriction_quote": "l’Utilisateur s’interdit (i) l’extraction par transfert permanent ou temporaire de la totalité ou d’une partie qualitativement ou quantitativement substantielle du Site sur un autre support, par tout moyen et sous toute forme, et (ii) la réutilisation de la totalité ou d’une partie qualitativement ou quantitativement substantielle du Site quelle qu’en soit la forme, y compris par un lien hypertexte.A ce titre, l’Utilisateur s’engage expressément",
+      "terms_checked_at": "2026-10-08T13:28:44.671404+00:00"
+    },
+    {
+      "source_id": "synergie",
+      "name": "Synergie",
+      "domain": "www.synergie.fr",
+      "checked_at": "2026-10-08T13:22:27.675861+00:00",
+      "connected": false,
+      "probed_url": "https://www.synergie.fr/robots.txt",
+      "rss_candidates": [],
+      "api_candidates": [],
+      "jobposting_nodes": 0,
+      "terms_candidates": [],
+      "sitemaps": [
+        "https://www.synergie.fr/sitemap.xml"
+      ],
+      "robots_allowed_homepage": true,
+      "homepage_url": "https://www.synergie.fr/",
+      "terms_evidence": [],
+      "status": "terms_restricted",
+      "message": "Réutilisation/extraction restreinte par les conditions examinées ; collecte désactivée.",
+      "terms_url": "https://www.synergie.fr/mentions-legales",
+      "restriction_quote": "Toute reproduction, représentation ou diffusion, à des fins autres que personnelles, en tout ou partie du contenu des Services sur quelque support ou par tout procédé que ce soit est interdite. Le non-respect de cette interdiction constitue notamment une contrefaçon au sens des articles L. 335-2 et suivants du Code de la propriété intellectuelle susceptible d'engager la responsabilité civile et pénale du contrefacteur. 11.2 Crédits Photos : Tous",
+      "terms_checked_at": "2026-10-08T13:28:44.671681+00:00"
+    },
+    {
+      "source_id": "startpeople",
+      "name": "Start People",
+      "domain": "www.startpeople.fr",
+      "checked_at": "2026-10-08T13:22:28.752133+00:00",
+      "connected": false,
+      "probed_url": "https://www.startpeople.fr/robots.txt",
+      "rss_candidates": [],
+      "api_candidates": [],
+      "jobposting_nodes": 0,
+      "terms_candidates": [],
+      "sitemaps": [],
+      "robots_allowed_homepage": true,
+      "homepage_url": "https://www.startpeople.fr/",
+      "terms_evidence": [],
+      "status": "terms_restricted",
+      "message": "Réutilisation/extraction restreinte par les conditions examinées ; collecte désactivée.",
+      "terms_url": "https://www.startpeople.fr/mentions-legales",
+      "restriction_quote": "La reproduction de tout ou partie de ce site sur quelque support que ce soit est formellement interdite sauf autorisation expresse de la société Start People. Malgré toute l’attention apportée à la réalisation de ce site et à son actualisation régulière, des erreurs peuvent s’être glissées dans les informations et/ou documents présentés. Si vous en constatez n’hésitez pas à nous le faire savoir en contactant la société Start People, nous procéder",
+      "terms_checked_at": "2026-10-08T13:28:44.671741+00:00"
+    },
+    {
+      "source_id": "ras",
+      "name": "R.A.S Intérim",
+      "domain": "www.ras-interim.fr",
+      "checked_at": "2026-10-08T13:22:29.147841+00:00",
+      "connected": false,
+      "probed_url": "https://www.ras-interim.fr/robots.txt",
+      "rss_candidates": [],
+      "api_candidates": [],
+      "jobposting_nodes": 0,
+      "terms_candidates": [
+        "https://www.ras-interim.fr/cgu"
+      ],
+      "sitemaps": [
+        "https://www.ras-interim.fr/sitemap_index.xml"
+      ],
+      "robots_allowed_homepage": true,
+      "homepage_url": "https://www.ras-interim.fr/",
+      "terms_evidence": [
+        {
+          "url": "https://www.ras-interim.fr/cgu",
+          "excerpt": "Conditions générales d'utilisation - Ras Intérim Aller au contenu directement Menu Candidats Entreprise Accueil Notre vision Se lancer dans l’intérim Vos avantages L’intérim décrypté Nous rejoindre Mon compte RSE Accessibilité : Sombre Nos agences Offres d'emploi Conditions générales d’utilisation Accueil » Conditions générales d’utilisation Le présent document a pour objet de définir les modalités et conditions dans lesquelles d’une part, RAS INTERIM, ci-après dénommé l’EDITEUR, met à la disposition de ses utilisateurs le site, et les services disponibles sur le site et d’autre part, la manière par laquelle l’utilisateur accède au site et utilise ses services. Toute connexion au site est subordonnée au respect des présentes conditions. Pour l’utilisateur, le simple accès au site de l’EDITEUR à l’adresse URL suivante https://www.ras-interim.fr implique l’acceptation de l’ensemble des conditions décrites ci-après. Propriété intellectuelle La structure générale du site RAS INTERIM , ainsi que les textes, graphiques, images, sons et vidéos la composant, sont la propriété de l’éditeur ou de ses partenaires. Toute représentation et/ou reproduction et/ou exploitation partielle ou totale des contenus et services proposés par le site RAS INTERIM , par quelque procédé que ce soit, sans l’autorisation préalable et par écrit de RAS INTERIM et/ou de ses partenaires est strictement interdite et serait susceptible de constituer une contrefaçon au sens des articles L 335-2 et suivants du Code de la propriété intellectuelle. Les marques « RAS » & « RAS INTERIM » sont des marques déposées par RAS INTERIM .Toute représentation et/ou reproduction et/ou exploitation partielle ou totale de ces marques, de quelque nature que ce soit, est totalement prohibée. Liens hypertextes Le site www.ras-interim.fr peut contenir des liens hypertextes vers d’autres sites présents sur le réseau Internet. Les liens vers ces autres ressources vous font quitter le site www.ras-interim.fr Il est possible de créer un lien vers la page de présentation de ce site sans autorisation expresse de l’EDITEUR. Aucune autorisation ou demande d’information préalable ne peut être exigée par l’éditeur à l’égard d’un site qui souhaite établir un lien vers le site de l’éditeur. Il convient toutefois d’afficher ce site dans une nouvelle fenêtre du navigateur. Cependant, l’EDITEUR se réserve le droit de demander la suppression d’un lien qu’il estime non conforme à l’objet du site RAS INTERIM Responsabilité de l’éditeur Les informations et/ou documents figurant sur ce site et/ou accessibles par ce site proviennent de sources considérées comme étant fiables. Toutefois, ces informations et/ou documents sont susceptibles de contenir des inexactitudes techniques et des erreurs typographiques. L’EDITEUR se réserve le droit de les corriger, dès que ces erreurs sont portées à sa connaissance. Il est fortement recommandé de vérifier l’exactitude et la pertinence des informations et/ou documents mis à disposition sur ce site. Les informations et/ou documents disponibles sur ce site sont susceptibles d’être modifiés à tout moment, et peuvent avoir fait l’objet de mises à jour. En particulier, ils peuvent avoir fait l’objet d’une mise à jour entre le moment de leur téléchargement et celui où l’utilisateur en prend connaissance. L’utilisation des informations et/ou documents disponibles sur ce site se fait sous l’entière et seule responsabilité de l’utilisateur, qui assume la totalité des conséquences pouvant en découler, sans que l’EDITEUR puisse être recherché à ce titre, et sans recours contre ce dernier. L’EDITEUR ne pourra en aucun cas être tenu responsable de tout dommage de quelque nature qu’il soit résultant de l’interprétation ou de l’utilisation des informations et/ou documents disponibles sur ce site. Accès au site L’éditeur s’efforce de permettre l’accès au site 24 heures sur 24, 7 jours sur 7, sauf en cas de force majeure ou d’un événement hors du contrôle de l’EDITEUR, et sous réserve des éventuelles pannes et interventions de maintenance nécessaires au bon fonctionnement du site et des services. Par conséquent, l’EDITEUR ne peut garantir une disponibilité du site et/ou des services, une fiabilité des transmissions et des performances en terme de temps de réponse ou de qualité. Il n’est prévu aucune assistance technique vis à vis de l’utilisateur que ce soit par des moyens électronique ou téléphonique. La responsabilité de l’éditeur ne saurait être engagée en cas d’impossibilité d’accès à ce site et/ou d’utilisation des services. Par ailleurs, l’EDITEUR peut être amené à interrompre le site ou une partie des services, à tout moment sans préavis, le tout sans droit à indemnités. L’utilisateur reconnaît et accepte que l’EDITEUR ne soit pas responsable des interruptions, et des conséquences qui peuvent en découler pour l’utilisateur ou tout tiers. Modification des conditions d’utilisation L’EDITEUR se réserve la possibilité de modifier, à tout moment et sans préavis,"
+        }
+      ],
+      "status": "terms_restricted",
+      "message": "Réutilisation/extraction restreinte par les conditions examinées ; collecte désactivée.",
+      "terms_url": "https://www.ras-interim.fr/cgu",
+      "restriction_quote": "Toute représentation et/ou reproduction et/ou exploitation partielle ou totale des contenus et services proposés par le site RAS INTERIM , par quelque procédé que ce soit, sans l’autorisation préalable et par écrit de RAS INTERIM et/ou de ses partenaires est strictement interdite et serait susceptible de constituer une contrefaçon au sens des articles L 335-2 et suivants du Code de la propriété intellectuelle. Les marques « RAS » & « RAS INTERIM",
+      "terms_checked_at": "2026-10-08T13:28:44.671800+00:00"
+    },
+    {
+      "source_id": "temporis",
+      "name": "Temporis",
+      "domain": "www.temporis-franchise.fr",
+      "checked_at": "2026-10-08T13:22:29.863903+00:00",
+      "connected": false,
+      "probed_url": "https://www.temporis-franchise.fr/robots.txt",
+      "rss_candidates": [],
+      "api_candidates": [],
+      "jobposting_nodes": 0,
+      "terms_candidates": [],
+      "sitemaps": [],
+      "robots_allowed_homepage": true,
+      "homepage_url": "https://www.temporis-franchise.fr/",
+      "terms_evidence": [],
+      "status": "terms_restricted",
+      "message": "Réutilisation/extraction restreinte par les conditions examinées ; collecte désactivée.",
+      "terms_url": "https://www.temporis-franchise.fr/mentions-legales",
+      "restriction_quote": "Vous Vous interdisez (i) l'extraction par transfert permanent ou temporaire de la totalité ou d'une partie qualitativement ou quantitativement substantielle du Site sur un autre support, par tout moyen et sous toute forme, et (ii) la réutilisation de la totalité ou d'une partie qualitativement ou quantitativement substantielle du Site quelle qu'en soit la forme, y compris par un lien hypertexte. A ce titre, Vous Vous engagez expressément à respec",
+      "terms_checked_at": "2026-10-08T13:28:44.671887+00:00"
+    },
+    {
+      "source_id": "actual",
+      "name": "Actual",
+      "domain": "www.actualgroup.com",
+      "checked_at": "2026-10-08T13:22:30.409820+00:00",
+      "connected": false,
+      "probed_url": "https://www.actualgroup.com/robots.txt",
+      "rss_candidates": [],
+      "api_candidates": [],
+      "jobposting_nodes": 0,
+      "terms_candidates": [
+        "https://www.actualgroup.com/conditions-generales-utilisation"
+      ],
+      "sitemaps": [
+        "https://www.actualgroup.com/sitemap_index.xml"
+      ],
+      "robots_allowed_homepage": true,
+      "homepage_url": "https://www.actualgroup.com/",
+      "terms_evidence": [
+        {
+          "url": "https://www.actualgroup.com/conditions-generales-utilisation",
+          "excerpt": "Mentions légales | Actual Group | Actual group Candidats Entreprises Trouver un job Par secteur Industrie & Ingénierie BTP & Construction Transport & Logistique Tertiaire & Services Santé & Médical Hôtellerie & Restauration Digital & IT Commerce & Distribution Par contrat Intérim CDI CDD Alternance & Stage Freelance & Indépendants Vacation Management de transition Par région Pays de la Loire Île de France Hauts de France Grand Est Auvergne Rhône Alpes Occitanie Nouvelle Aquitaine Toutes les régions Par métier Magasinage & manutention Préparateur de commandes Maintenance industrielle & équipements Commerce alimentaire & métiers de bouche Métallurgie & mécanique Commercial & vente Tech & informatique Équipes 1er réseau d'agences d'emploi en France. Intérim, CDD, CDI : nous vous accompagnons dans tous vos projets professionnels, partout près de chez vous. Manutention Préparation de commandes Cariste Agent de production Ouvrier BTP Employé libre-service Des prestations sur mesure pour les métiers en tension. Ingénierie, IT, accès difficiles, hospitalité de luxe : nous recrutons les talents rares. Ingénierie Conduite sur route Métiers d'accès difficiles Métiers du luxe Spécialiste du recrutement et de l'intérim dans les métiers de la santé. Vacation, intérim, CDI : votre carrière médicale commence ici. Nos métiers Professions médicales Professions paramédicales Personnel soignant Pharmacie Nos établissements Hôpitaux publics Cliniques privées EHPAD Centres de santé Laboratoires Ingénierie Conduite sur route Métiers d'accès difficiles Métiers du luxe Cabinet de conseil en staffing & talent acquisition. CDI, management de transition, freelance : nous connectons les cadres et dirigeants aux meilleures opportunités. Nos métiers Finance & Comptabilité RH & Juridique Sales & Marketing IT & Digital Supply Chain Nos niveaux Cadres Managers Dirigeants Experts Trouvez vos solutions d'emploi durables. Nos équipes ERGOS vous accompagnent dans vos recherches d'emploi avec l'appui de nos entreprises partenaires dans des filières diversifiées : BTP, industrie, logistique, tertiaire… Nos métiers Finance & Comptabilité RH & Juridique Sales & Marketing IT & Digital Supply Chain Nos niveaux Cadres Managers Dirigeants Experts Avantages Fidélité récompensée Programme de fidélité Parrainage CET Accompagnement personnalisé Me former avec Actual Faire un bilan de compétences Envisager une reconversion professionnelle Rencontrer nos équipes partout en France Expérience digitale Notre modèle unique Nos applications Le groupe À propos Qui sommes-nous ? Notre histoire Notre gouvernance Nos engagements RSE Nos agences Nous rejoindre Actualités Communiqués de presse Blog & Insights Études et rapports Autres activités Écoles & Formations initiales Location de bureaux & salles de réunions Prestation événementielle Sécurité événementielle et des personnes Fonds d'investissements Consultant RH pour TPE/PME Actual et le sport Sailing team Partenariats sportifs Écurie de sportifs Ressources myactual Blog Fiches métiers Centre d'aide Trouver un job Équipes Avantages Le groupe Ressources Candidater Candidats Entreprises Trouvez nos 600+ agences Nous trouver | Actual group Se connecter Conditions générales d'utilisation Préambule Les présentes conditions générales d’utilisation – ci-après « CGU » – définissent et encadrent les modalités d’utilisation du site https://www.actualgroup.com/ – ci-après le « Site » – par l’utilisateur – ci-après « Utilisateur » – sans préjudice des conditions d’utilisation spécifiques mentionnées sur le Site le cas échéant. Le Site est édité par la société Groupe Actual , ci-après la « Société ». Est considéré comme Utilisateur toute personne qui accède au Site. La Société peut modifier les CGU, notamment pour les adapter aux évolutions du Site et de la Société. Les CGU sont applicables dans leur version en vigueur au moment où l’Utilisateur accède au Site, sans préjudice d’une version antérieure ou ultérieure. L’Utilisateur s’engage à lire et à accepter les CGU sans réserve. A défaut, l’Utilisateur s’interdit d’accéder au Site. De même : l’Utilisateur s’engage à consulter les CGU lors de chaque nouvel accès au Site, pour lire et accepter toute modification des CGU par la Société le cas échéant. Article 1 – Présentation du Site – Accès au Site. Le Site a vocation, de manière générale, à mettre en relation des personnes en recherche d’emploi ou de formation et des entreprises qui cherchent à recruter, et à diffuser de l’information dans le domaine de l’emploi et du recrutement. Le Site propose des services adaptés en fonction du profil de l’Utilisateur. Certains contenus et services du Site sont accessibles librement et gratuitement à tout Utilisateur. Certains contenus et services du Site sont accessibles à l’Utilisateur sous réserve de création et d’enregistrement préalables d’un espace personnel. Article 1-1 – Contenus et services en libre accès. L’Utilisateur accède librement aux contenus et services du Site suivants : "
+        }
+      ],
+      "status": "terms_restricted",
+      "message": "Réutilisation/extraction restreinte par les conditions examinées ; collecte désactivée.",
+      "terms_url": "https://www.actualgroup.com/mentions-legales",
+      "restriction_quote": "Toute reproduction, représentation, modification, adaptation, traduction, diffusion, extraction, réutilisation ou exploitation, totale ou partielle, de tout ou partie du site ou de ses contenus, par quelque procédé que ce soit et sur quelque support que ce soit, est interdite sans l’autorisation préalable et écrite d’ACTUAL GROUP, sauf dans les cas expressément autorisés par la loi. Les marques, dénominations sociales, noms commerciaux, enseignes",
+      "terms_checked_at": "2026-10-08T13:28:44.671939+00:00"
+    },
+    {
+      "source_id": "triangle",
+      "name": "Triangle Intérim",
+      "domain": "www.triangle.fr",
+      "checked_at": "2026-10-08T13:22:31.849482+00:00",
+      "connected": true,
+      "probed_url": "https://www.triangle.fr/robots.txt",
+      "rss_candidates": [
+        "https://www.triangle.fr/feed/",
+        "https://www.triangle.fr/comments/feed/"
+      ],
+      "api_candidates": [],
+      "jobposting_nodes": 0,
+      "terms_candidates": [],
+      "sitemaps": [],
+      "robots_allowed_homepage": true,
+      "homepage_url": "https://www.triangle.fr/",
+      "terms_evidence": [],
+      "status": "ok",
+      "message": "API WordPress et permaliens vérifiés : 2 offres Toulon. Couverture partielle, AJAX interdit non utilisé.",
+      "terms_url": "https://www.triangle.fr/politique-de-confidentialite/",
+      "connector": "wordpress",
+      "endpoint": "https://www.triangle.fr/wp-json/wp/v2/job?search=Toulon&per_page=100&orderby=date&order=desc",
+      "connection_test": {
+        "checked_at": "2026-10-08T13:26:33.118323+00:00",
+        "status": "ok",
+        "fetched": 2,
+        "imported": 2
+      }
+    },
+    {
+      "source_id": "team",
+      "name": "Team Intérim",
+      "domain": "www.team-interim.fr",
+      "checked_at": "2026-10-08T13:22:32.325831+00:00",
+      "connected": false,
+      "probed_url": "https://www.team-interim.fr/robots.txt",
+      "rss_candidates": [],
+      "api_candidates": [],
+      "jobposting_nodes": 0,
+      "terms_candidates": [
+        "https://team-interim.fr/CGU/site-internet"
+      ],
+      "sitemaps": [],
+      "robots_allowed_homepage": true,
+      "homepage_url": "https://team-interim.fr/",
+      "terms_evidence": [
+        {
+          "url": "https://team-interim.fr/CGU/site-internet",
+          "excerpt": "Conditions Générales d’Utilisation du site Team Intérim Accueil Agences Intérim LE GROUPE Qui sommes-nous ? Valeurs & Charte Démarche QSE L'équipe CANDIDATS Conseils Offres ENTREPRISES Choisir Team Interim Témoignages Formation Présentation Catalogue des formations Demande candidat Demande entreprise Recrutement CDD - CDI Team Talents.INC Présentation Offres RH Conseil Luxembourg Présentation Offres Insertion Présentation Engagement et valeurs Partenaires et Réseaux Offres Actualités Interim - Recrutement CDD/CDI Formation - Insertion - Medical Vous êtes ici: Accueil CGU Site Internet Site Internet Mentions légales & Conditions d’utilisation OBJET ET ACCEPTATION Editeur : Les présentes conditions d’utilisation (les « Conditions d’utilisation ») régissent l’utilisation (incluant l’accès) du site Team-interim.fr. Lucie VERVELLE - Directeur Digital Marketing et Communication Directeur de publication : Lucie VERVELLE DPO : Virginie JUGE rgpd@team-interim.fr 68 Impasse de la source - 83170 Brignoles Tel : 04 94 69 62 76 Contact : VERSATEAM SARL au capital de 7500 € - RCS 827 756 560 Draguignan Adresse : 68 Impasse de la source - 83170 Brignoles N° de TVA intracommunautaire : FR46 827 756 560 (Ci-après désignée « TEAM INTERIM» ou « nous »), ainsi que le contenu accessible via ce site (le Site Internet). Hébergeur : Alwaysdata 62 Rue Tiquetonne 75002 Paris 01 84 16 23 40 Concepteur du site : E-partenaire Bâtiment Henri Poincaré Domaine du Petit Arbois Avenue Louis Philibert 13100 Aix En Provence Tel : 04 86 87 03 09 Fax : 04 86 87 03 02 Email contact@e-partenaire.fr Toute personne accédant au Site Internet (« vous ») accepte, par les présentes, les Conditions d’utilisation en vigueur au moment de sa visite du Site Internet et s’engage à s’y conformer. Les présentes Conditions d’utilisation pourront être occasionnellement modifiées et votre utilisation du Site Internet est soumise aux Conditions d’utilisation applicables à la date de votre visite du Site. Nous vous recommandons de consulter régulièrement les présentes Conditions d’utilisation afin de vous assurer que vous en respectez le contenu. En cas de désaccord de votre part, veuillez ne pas utiliser le Site Internet. Le contenu mis à votre disposition via le Site Internet (le « Contenu ») peut être soumis à des conditions spécifiques (« Conditions spécifiques ») que vous acceptez, à chacun de vos accès audit Contenu. En cas de contradiction ou d’incohérence entre les présentes Conditions d’utilisation et l’une quelconque des Conditions spécifiques, ces dernières prévalent. Chaque fois que vous accédez au Site Internet et à son Contenu, vous acceptez les présentes Conditions d’utilisation et l’ensemble des Conditions spécifiques applicables au Contenu. Le Site Internet ne saurait constituer, réellement ou potentiellement, une source de conseils ou un moyen d’établir une relation professionnelle, de quelque nature que ce soit, entre vous et nous. L’accès au Site Internet est autorisé sur une base temporaire et nous nous réservons le droit de retirer ou de modifier le Contenu fourni sur le Site Internet, sans avis préalable. Périodiquement, nous serons susceptibles de restreindre l’accès à tout ou partie du Site Internet. Nous ne sommes soumis à aucune obligation de mise à disposition du Site Internet et nous ne pourrons être tenus responsables de toute indisponibilité, totale ou partielle, du Site Internet, à tout moment et pour toute durée, quelle que soit la raison. UTILISATION DU SITE INTERNET Vous reconnaissez et acceptez, volontairement et expressément, que votre utilisation du Site Internet relève de votre seule et exclusive responsabilité. Vous êtes responsable de la mise en œuvre des moyens permettant votre accès au Site Internet. Il est également de votre responsabilité de garantir que toute personne accédant au Site Internet par le biais de votre connexion à Internet a connaissance des présentes Conditions d’utilisation ainsi que des Conditions spécifiques, et qu’elle se conforme à ces Conditions. Si vous choisissez ou obtenez un code d’identification utilisateur, un mot de passe ou toute autre information dans le cadre de nos procédures de sécurité, vous devrez traiter ces informations en tant que données confidentielles et vous ne les divulguerez en aucun cas à des tiers. Nous pourrons désactiver tout code d’identification utilisateur ou mot de passe, qu’il ait été choisi par vous ou qu’il vous ait été attribué par nous, à tout moment, si nous pensons que vous n’avez pas respecté l’une quelconque des dispositions des présentes. En accédant au Site Internet, vous vous engagez à ne commettre aucun acte susceptible de porter préjudice à notre image, à nos intérêts, à nos droits ou ceux de nos affiliés (« Sociétés du groupe TEAM INTERIM ») ou, qui pourrait endommager, rendre inutilisable ou surcharger le Site Internet ou, qui pourrait entraver d’une quelconque façon, l’utilisation normale du Site Internet par d’autres visiteurs. Nous déployons des mesur"
+        }
+      ],
+      "status": "terms_restricted",
+      "message": "Réutilisation/extraction restreinte par les conditions examinées ; collecte désactivée.",
+      "terms_url": "https://team-interim.fr/CGU/site-internet",
+      "restriction_quote": "il vous est expressément interdit de reproduire, transformer, distribuer ou communiquer publiquement, rendre disponible, extraire, réutiliser, renvoyer ou, de toute autre manière, d’utiliser par tous moyens ou procédures, toute partie du Site Internet ou du Contenu, à l’exception des cas prévus par les présentes Conditions d’utilisation ou toutes Conditions spécifiques applicables ou, des cas autorisés par la loi en vigueur ou, des cas dans lesqu",
+      "terms_checked_at": "2026-10-08T13:28:44.672017+00:00"
+    },
+    {
+      "source_id": "staffmatch",
+      "name": "Staffmatch",
+      "domain": "www.staffmatch.com",
+      "checked_at": "2026-10-08T13:22:32.438527+00:00",
+      "connected": false,
+      "probed_url": "https://www.staffmatch.com/robots.txt",
+      "rss_candidates": [],
+      "api_candidates": [],
+      "jobposting_nodes": 0,
+      "terms_candidates": [],
+      "sitemaps": [
+        "https://staffmatch.com/sitemap.xml"
+      ],
+      "robots_allowed_homepage": true,
+      "homepage_url": "https://staffmatch.com/fr/",
+      "terms_evidence": [],
+      "status": "terms_restricted",
+      "message": "Réutilisation/extraction restreinte par les conditions examinées ; collecte désactivée.",
+      "terms_url": "https://staffmatch.com/fr/legal/",
+      "restriction_quote": "strictement réservée à un usage personnel, excluant tout usage à des fins publicitaires et/ou commerciales et/ou d’informations, et qu’elle soit conforme aux dispositions de l’article L122-5 du Code de la Propriété Intellectuelle. À l’exception des dispositions ci-dessus, toute reproduction, représentation, utilisation ou modification, par quelque procédé que ce soit et sur quelque support que ce soit, de tout ou partie du site, de tout ou partie",
+      "terms_checked_at": "2026-10-08T13:28:44.672051+00:00"
+    },
+    {
+      "source_id": "interimnation",
+      "name": "Intérim Nation",
+      "domain": "www.interim-nation.fr",
+      "checked_at": "2026-10-08T13:22:33.291395+00:00",
+      "connected": false,
+      "probed_url": "https://www.interim-nation.fr/robots.txt",
+      "rss_candidates": [
+        "https://interim-nation.fr/feed/",
+        "https://interim-nation.fr/comments/feed/"
+      ],
+      "api_candidates": [],
+      "jobposting_nodes": 0,
+      "terms_candidates": [],
+      "sitemaps": [
+        "https://www.interim-nation.fr/post-sitemap.xml",
+        "https://www.interim-nation.fr/page-sitemap.xml",
+        "https://www.interim-nation.fr/job-sitemap.xml",
+        "https://www.interim-nation.fr/category-sitemap.xml"
+      ],
+      "robots_allowed_homepage": true,
+      "homepage_url": "https://interim-nation.fr/",
+      "terms_evidence": [],
+      "status": "terms_restricted",
+      "message": "Réutilisation/extraction restreinte par les conditions examinées ; collecte désactivée.",
+      "terms_url": "https://interim-nation.fr/mentions-legales/",
+      "restriction_quote": "toute reproduction, totale ou partielle, et toute représentation du contenu du site, d’un ou de plusieurs des éléments protégés, par quelque procédé que ce soit, sans autorisation expresse de GROUPE BELVEDIA est interdite, et constitue une contrefaçon sanctionnée par les articles L.335-2 et suivants du Code de la propriété intellectuelle. Accès au site internet L’accès au Site est possible 24 heures sur 24, 7 jours sur 7, sauf en cas de force maj",
+      "terms_checked_at": "2026-10-08T13:28:44.672145+00:00"
+    },
+    {
+      "source_id": "satis",
+      "name": "Satis Jobs Center",
+      "domain": "www.satis-jobscenter.com",
+      "checked_at": "2026-10-08T13:22:34.195115+00:00",
+      "connected": false,
+      "probed_url": "https://www.satis-jobscenter.com/robots.txt",
+      "rss_candidates": [],
+      "api_candidates": [],
+      "jobposting_nodes": 0,
+      "terms_candidates": [],
+      "sitemaps": [],
+      "robots_allowed_homepage": true,
+      "homepage_url": "https://satis-jobscenter.com/",
+      "terms_evidence": [],
+      "status": "terms_restricted",
+      "message": "Réutilisation/extraction restreinte par les conditions examinées ; collecte désactivée.",
+      "terms_url": "https://satis-jobscenter.com/mentions-legales/",
+      "restriction_quote": "Toute reproduction, représentation, modification, publication, adaptation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite, sauf autorisation écrite préalable de : Satis Solutions. Toute exploitation non autorisée du site ou de l’un quelconque des éléments qu’il contient sera considérée comme constitutive d’une contrefaçon et poursuivie conformément aux dispositions des articles L.335-2 et suivan",
+      "terms_checked_at": "2026-10-08T13:28:44.672234+00:00"
+    },
+    {
+      "source_id": "regional",
+      "name": "R Intérim",
+      "domain": "www.regional-interim.fr",
+      "checked_at": "2026-10-08T13:22:38.182690+00:00",
+      "connected": false,
+      "probed_url": "https://www.regional-interim.fr/robots.txt",
+      "rss_candidates": [],
+      "api_candidates": [],
+      "jobposting_nodes": 0,
+      "terms_candidates": [],
+      "sitemaps": [],
+      "status": "access_blocked",
+      "message": "robots.txt inaccessible (HTTP 503)."
+    }
+  ]
+}
