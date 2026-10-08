@@ -1,21 +1,27 @@
-# JobRadar — V1
+# JobRadar V2 — sans identifiants candidats
 
-Application Streamlit responsive pour agréger les annonces publiques. **La seule collecte implémentée est l’API officielle France Travail.** Les 23 autres enseignes figurent dans la configuration pour les intégrations futures ; elles ne sont pas collectées à ce stade.
+Application Streamlit de lancement de recherches ciblées sur des sites publics d'offres d'emploi.
 
-## Lancer
+## Installation
 
-1. Installer Python 3.10+.
-2. `pip install -r requirements.txt`
-3. Obtenir des identifiants pour l'API Offres d'emploi de France Travail via https://francetravail.io/ . Vérifier les scopes et droits accordés par France Travail.
-4. Définir les variables d'environnement `FRANCE_TRAVAIL_CLIENT_ID` et `FRANCE_TRAVAIL_CLIENT_SECRET` (ne jamais les mettre dans un dépôt public).
-5. `streamlit run app.py`
+```bash
+pip install -r requirements.txt
+streamlit run app.py
+```
 
-Le bouton **Actualiser maintenant** interroge réellement l’API. Les données et états de candidature sont conservés dans un fichier SQLite local (`jobradar.sqlite3`). Sur un hébergement éphémère, ils peuvent disparaître : utiliser un disque persistant ou une base distante pour un déploiement durable. Cette V1 ne propose ni comptes, ni synchronisation multi-appareils garantie, ni tâche planifiée. Pour un accès partagé, héberger l'application et prévoir une base persistante, une authentification et une séparation des données par utilisateur. Les requêtes peuvent être limitées par les quotas de l’API. Le champ département est initialisé à 83 et modifiable. Les filtres de rayon kilométrique et d'horaires restent à implémenter.
+## Fonctionnement
 
-## État de réalisation
+- Choix d'un métier, de mots-clés, d'une zone et de sources.
+- Chaque bouton ouvre une recherche Google limitée au domaine de la source concernée.
+- **Aucun compte candidat, mot de passe, cookie de session ou clé API n'est demandé ou conservé par l'application.**
+- **Ce n'est pas encore un agrégateur automatique** : aucune offre n'est importée, dédupliquée ou rafraîchie en arrière-plan.
+- Les résultats de recherche externes peuvent être obsolètes, incomplets ou hors zone. Les domaines devront être revérifiés au fil du temps.
+- Les recherches sont transmises à Google quand l'utilisateur clique ; les règles de confidentialité de Google s'appliquent.
 
-- Interface responsive, catégories, recherche texte, filtre de sources, suivi, favoris : implémentés.
-- API France Travail : connecteur implémenté, **non testé avec des identifiants réels**.
-- 23 autres sources : non connectées.
-- Actualisation quotidienne : à déployer via planificateur externe.
-- Comptes multi-utilisateurs : ultérieur.
+## Déploiement Streamlit Cloud
+
+Remplacer `app.py`, `README.md` et `requirements.txt` dans le dépôt GitHub, puis attendre le redéploiement. Aucun secret Streamlit requis.
+
+## Suite du projet
+
+Tester un à un des connecteurs autorisés, intégrer de vraies offres et leur date, puis prévoir un stockage privé et durable des favoris avant de rétablir le suivi de candidatures.
