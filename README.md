@@ -1,23 +1,18 @@
-# JobRadar V3 — vrais flux d'annonces
+# JobRadar V4
 
-Deux connecteurs publics sans clé ni compte candidat :
-- Arbeitnow : https://www.arbeitnow.com/blog/job-board-api
-- Remotive : https://remotive.com/remote-jobs/api
+Application Streamlit : récupération des offres du Var à partir du flux RSS public **Emploi-Territorial**.
 
-**Important** : ces flux ne remplacent pas une couverture locale de Toulon ou des agences d'intérim françaises. Arbeitnow est principalement européen/tech, Remotive exclusivement télétravail. Une recherche « Toulon » peut retourner zéro résultat. Aucune agence française ni France Travail n'est prétendue connectée.
+Source : https://www.emploi-territorial.fr/rss?search-dept=083
 
-## Déploiement Streamlit
-Remplacer `app.py`, `requirements.txt`, `README.md` dans le dépôt GitHub existant. Streamlit Cloud se redéploie automatiquement. Aucun secret requis.
+- Aucune clé API et aucun compte candidat.
+- Actualisation à la demande et cache d'une heure.
+- Filtres métier, mots-clés, zone approximative autour de Toulon.
+- Aucun suivi partagé des candidatures.
 
-## Fonctionnement
-- Appels HTTPS aux API publiques, 20 s de délai maximum par source.
-- Cache 6 h pour éviter les requêtes répétées, bouton de rafraîchissement manuel.
-- Filtres métier, mots-clés, localisation exacte, sources ; liens directs.
-- Aucune donnée personnelle ou candidature conservée.
-- Pas de tests réseau live dans l'environnement de construction ; vérifier l'accès aux flux depuis Streamlit Cloud après déploiement.
+## Installation
+
+Remplacer `app.py`, `requirements.txt` et `README.md` dans le dépôt GitHub, puis valider le commit. Streamlit Community Cloud redéploiera normalement automatiquement.
 
 ## Limites
-- La couverture française et locale est faible ; la prochaine étape est l'intégration de sources françaises réellement autorisées.
-- Les catégories sont des correspondances de mots-clés dans le titre, pas une classification sémantique.
-- Pas de favoris durables ni de planification quotidienne.
-- Les conditions des fournisseurs et les quotas doivent être respectés.
+
+Cette V4 n'est **pas** encore un agrégateur des agences d'intérim : elle ne couvre que les offres de collectivités territoriales du Var présentes dans le flux. Le contenu exact et la quantité d'annonces ne peuvent être garantis. Le flux RSS peut renvoyer une erreur ou une liste partielle. Le filtrage géographique s'appuie sur les mots présents dans le texte du flux ; certaines offres locales peuvent ne pas être reconnues. Les conditions de réutilisation du flux doivent être respectées.
