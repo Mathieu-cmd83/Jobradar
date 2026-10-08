@@ -61,6 +61,9 @@ class AppTests(unittest.TestCase):
         self.assertEqual([s.value for s in at.subheader], ['Magasinier', 'Agent technique', 'Chauffeur'])
         self.assertEqual(at.metric[0].value, '3')
         self.assertIn('0/23', at.info[0].value)
+        self.assertEqual(at.multiselect[1].options, ['Emploi-Territorial (Var)'])
+        self.assertTrue(any('Publication sur le site : Non renseignée' in c.value for c in at.caption))
+        self.assertTrue(any('Publication RSS :' in c.value for c in at.caption))
         source_table = at.dataframe[0].value
         self.assertEqual(len(source_table), 24)
         self.assertEqual(len(source_table[source_table['Collecte activée'] == 'Oui']), 1)

@@ -1,0 +1,29 @@
+{
+  "checked_on": "2026-10-08",
+  "additional_connected_agencies": 0,
+  "reviews": [
+    {
+      "source_id": "advance",
+      "terms_url": "https://www.advanceemploi.fr/mentions-legales/",
+      "read_at": "2026-10-08T15:26:57+00:00",
+      "method": "PublicClient HTTPS with robots policy",
+      "network_status": "readable",
+      "discovered_candidates": ["https://www.advanceemploi.fr/feed/", "https://www.advanceemploi.fr/wp-json/"],
+      "decision": "terms_restricted",
+      "reason": "Private personal use only; redistribution on another website requires prior authorization. No recurring job connector activated.",
+      "connected": false
+    },
+    {
+      "source_id": "regional",
+      "terms_url": "https://www.regional-interim.fr/mentions-legales",
+      "probe_at": "2026-10-08T15:27:02+00:00",
+      "method": "PublicClient probe and official terms via web search",
+      "network_status": "network_error",
+      "probe_message": "ConnectionError before robots could be validated",
+      "terms_source_freshness": "Search index crawled four months earlier; direct local read unavailable",
+      "decision": "terms_restricted",
+      "reason": "Official terms require prior express authorization for use of site data. No offer collection attempted.",
+      "connected": false
+    }
+  ]
+}

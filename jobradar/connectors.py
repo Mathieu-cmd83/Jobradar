@@ -6,7 +6,7 @@ from urllib.parse import urljoin
 
 import feedparser
 
-from .models import Job, canonical_url, employment_details, parse_datetime, plain_text
+from .models import Job, canonical_url, employment_details, parse_datetime, plain_text, description_text, date_precision
 from .network import PublicClient, SourceError, safe_url
 
 
@@ -53,14 +53,15 @@ def parse_rss(data, source):
         if not title or not safe_url(url, source) or url in seen:
             continue
         seen.add(url)
-        html = str(entry.get('summary', ''))
-        description = plain_text(html)
+        contents = [c.get('value', '') for c in entry.get('content', []) if isinstance(c, dict)]
+        html = max(contents + [str(entry.get('summary', ''))], key=lambda x: len(plain_text(x)))
+        description = description_text(html)
         full_time, contract = employment_details(description)
         published = parse_datetime(entry.get('published'))
         updated = parse_datetime(entry.get('updated')) if 'updated' in entry else None
         fields = TerritorialFields()
         if source.id == 'territorial':
-            fields.feed(html)
+            fields.feed(str(entry.get('summary', '')) or html)
         expiry = fields.value('datecand')
         match = re.search(r'\b(\d{2})/(\d{2})/(\d{4})\b', expiry)
         expires_at = parse_datetime(f'{match[3]}-{match[2]}-{match[1]}', end_of_day=True) if match else None
@@ -70,8 +71,8 @@ def parse_rss(data, source):
                         remote_id=url, employer=fields.value('employeur'), location=location,
                         department='83' if source.var_scope else '',
                         location_verified=bool(source.var_scope or location),
-                        published_at=published or updated,
-                        date_kind='publication' if published else 'mise à jour' if updated else '',
+                        rss_published_at=published, rss_updated_at=updated,
+                        date_kind='publication RSS' if published else 'mise à jour RSS' if updated else '',
                         expires_at=expires_at, full_time=full_time, contract=contract))
     if parsed.entries and not jobs:
         raise SourceError('format_error', 'Flux reçu, mais aucune annonce avec titre et lien HTTPS approuvé.')
@@ -145,7 +146,7 @@ def parse_jobposting(data, source, page_url):
             if not node.get('url') or not title or not safe_url(url, source) or url in seen:
                 continue
             seen.add(url)
-            description = plain_text(node.get('description'))
+            description = description_text(node.get('description'))
             full_time, contract = employment_details(description, node.get('employmentType'))
             places = node.get('jobLocation', [])
             places = places if isinstance(places, list) else [places]
@@ -165,6 +166,7 @@ def parse_jobposting(data, source, page_url):
                             location=location, postal_code=postal, department='83' if in_var else '',
                             location_verified=bool(addresses and (location or postal)),
                             published_at=parse_datetime(node.get('datePosted')),
+                            publication_precision=date_precision(node.get('datePosted')),
                             date_kind='publication' if parse_datetime(node.get('datePosted')) else '',
                             expires_at=parse_datetime(node.get('validThrough'), end_of_day=True),
                             full_time=full_time, contract=contract))
@@ -255,7 +257,7 @@ def collect_wordpress(source, client):
             match = re.fullmatch(r'(.+),\s*83\s*-\s*Var', fields.location, flags=re.I)
             if not match:
                 continue
-            description = plain_text(post['content']['rendered'])
+            description = description_text(post['content']['rendered'])
             full_time, _ = employment_details(plain_text(' '.join(fields.parts)))
             _, contract = employment_details(fields.contract)
             if fields.contract in ('Alternance', 'Apprentissage'):
