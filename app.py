@@ -1,16 +1,21 @@
-"""JobRadar V4.2 — annonces du Var via flux RSS public Emploi-Territorial."""
-import re
-import unicodedata
-from datetime import datetime, date, timedelta, timezone
-from email.utils import parsedate_to_datetime
-from urllib.parse import urlparse
+"""JobRadar V5 — offres intégrées, provenance, historique et suivi par source."""
+import csv
+from datetime import datetime, timedelta
+import io
+import json
+import os
+from pathlib import Path
+import sqlite3
 
-import feedparser
-import requests
 import streamlit as st
 
-st.set_page_config(page_title='JobRadar V4.2', page_icon='📡', layout='wide')
-RSS_URL = 'https://www.emploi-territorial.fr/rss?search-dept=083'
+from jobradar.models import CONTRACT_OPTIONS, PARIS, UTC
+from jobradar.registry import SOURCES
+from jobradar.service import deduplicate, filter_jobs, refresh
+from jobradar.storage import Store
+
+ROOT = Path(__file__).resolve().parent
+st.set_page_config(page_title='JobRadar', page_icon='📡', layout='wide')
 CATEGORIES = {
     'Tous les métiers': [],
     'Logistique / magasinage': ['logist', 'magasin', 'stock', 'approvision', 'cariste'],
@@ -21,207 +26,182 @@ CATEGORIES = {
     'Bureau d’études': ['etudes', 'dessinateur', 'projeteur', 'metreur', 'economiste', 'urbanisme', 'ingenieur'],
     'Accueil / restauration': ['accueil', 'restauration', 'cuisine', 'serveur', 'agent de service'],
 }
-NEAR = ['toulon', 'la seyne', 'six fours', 'la garde', 'la valette', 'la farlede', 'le pradet', 'carqueiranne', 'ollioules', 'la crau', 'hyeres', 'sollies', 'le revest', 'cuers', 'saint mandrier', 'bandol', 'sanary']
+STATUS_LABELS = {
+    'ok': 'Collecte réussie', 'empty': 'Collecte réussie, aucune offre du Var',
+    'network_blocked': 'Bloquée par le réseau cloud', 'network_error': 'Source inaccessible',
+    'robots_denied': 'Collecte interdite par robots.txt', 'access_blocked': 'Accès bloqué',
+    'rate_limited': 'Limite de requêtes atteinte', 'http_error': 'Erreur HTTP',
+    'format_error': 'Format non exploitable', 'review_pending': 'Conditions et endpoint à vérifier',
+    'not_connected': 'Non connectée',
+    'terms_restricted': 'Réutilisation soumise à autorisation',
+    'connector_implemented': 'Connecteur implémenté — test de collecte à consulter',
+    'partial': 'Collecte partielle', 'budget_exceeded': 'Budget de collecte atteint',
+}
 
 
-def normalize(s):
-    s = unicodedata.normalize('NFKD', str(s or '').casefold())
-    return re.sub(r'\s+', ' ', ''.join(c for c in s if not unicodedata.combining(c)).replace('-', ' ')).strip()
+def date_label(value):
+    return datetime.fromisoformat(value).astimezone(PARIS).strftime('%d/%m/%Y %H:%M') if value else 'Non renseignée'
 
 
-def valid_link(value):
-    p = urlparse(str(value or ''))
-    return p.scheme == 'https' and p.hostname in ('www.emploi-territorial.fr', 'emploi-territorial.fr')
+def as_csv(rows):
+    def cell(value):
+        text = str(value if value is not None else '')
+        return "'" + text if text.lstrip().startswith(('=', '+', '-', '@')) else text
+    buffer = io.StringIO()
+    keys = list(dict.fromkeys(key for row in rows for key in row))
+    writer = csv.DictWriter(buffer, fieldnames=keys)
+    writer.writeheader()
+    for row in rows:
+        writer.writerow({key: cell(value) for key, value in row.items()})
+    return ('\ufeff' + buffer.getvalue()).encode('utf-8')
 
 
-def entry_date(entry):
-    """Published preferred; updated only as fallback. Unknown date stays None."""
-    for field in ('published_parsed', 'updated_parsed'):
-        value = entry.get(field)
-        if value:
-            try:
-                return date(*value[:3]), 'publication' if field == 'published_parsed' else 'mise à jour'
-            except (TypeError, ValueError):
-                pass
-    for field in ('published', 'updated'):
-        raw = entry.get(field)
-        if not raw:
-            continue
-        try:
-            return parsedate_to_datetime(raw).date(), 'publication' if field == 'published' else 'mise à jour'
-        except (ValueError, TypeError, IndexError):
-            try:
-                return date.fromisoformat(str(raw)[:10]), 'publication' if field == 'published' else 'mise à jour'
-            except ValueError:
-                pass
-    return None, None
-
-
-CONTRACT_OPTIONS = ['CDI', 'CDD', 'Intérim', 'Emploi permanent (fonction publique)',
-                    'Emploi temporaire (fonction publique)', 'Contrat de projet',
-                    'Apprentissage / alternance', 'Stage', 'Autre', 'Non précisé']
-
-
-def extract_employment_details(description):
-    """Ne jamais deviner un contrat ou un temps plein à partir du titre.
-
-    Les catégories de la fonction publique ne sont pas des CDI/CDD de droit privé.
-    """
-    text = normalize(description)
-    # La donnée doit figurer explicitement dans la fiche ou dans le flux.
-    full_time = None
-    if re.search(r'\btemps\s+non\s+complet\b|\btemps\s+partiel\b', text):
-        full_time = False
-    elif re.search(r'\btemps\s+complet\b|\btemps\s+plein\b', text):
-        full_time = True
-
-    contract = 'Non précisé'
-    patterns = [
-        (r'\bcontrat\s+de\s+projet\b', 'Contrat de projet'),
-        (r'\bemploi\s+temporaire\b', 'Emploi temporaire (fonction publique)'),
-        (r'\bemploi\s+permanent\b', 'Emploi permanent (fonction publique)'),
-        (r'\binterim\b|\bmission\s+d.interim\b', 'Intérim'),
-        (r'\bcontrat\s+d.apprentissage\b|\balternance\b', 'Apprentissage / alternance'),
-        (r'\bstage\b|\bstagiaire\b', 'Stage'),
-        (r'\bcontrat\s+a\s+duree\s+indeterminee\b|\bcdi\b', 'CDI'),
-        (r'\bcontrat\s+a\s+duree\s+determinee\b|\bcdd\b', 'CDD'),
-    ]
-    for pattern, label in patterns:
-        if re.search(pattern, text):
-            contract = label
-            break
-    return full_time, contract
-
-
-def parse_rss(data):
-    parsed = feedparser.parse(data)
-    if parsed.bozo and not parsed.entries:
-        raise ValueError('Le flux RSS est illisible')
-    out, seen = [], set()
-    for entry in parsed.entries:
-        title = re.sub(r'<[^>]*>', '', str(entry.get('title', ''))).strip()
-        link = entry.get('link', '')
-        if not title or not valid_link(link) or link in seen:
-            continue
-        seen.add(link)
-        description = re.sub(r'<[^>]*>', ' ', str(entry.get('summary', '')))
-        description = re.sub(r'\s+', ' ', description).strip()
-        published, date_kind = entry_date(entry)
-        full_time, contract = extract_employment_details(description)
-        out.append({'title': title, 'url': link, 'description': description[:1500], 'date': published,
-                    'date_kind': date_kind, 'full_time': full_time, 'contract': contract, 'source': 'Emploi-Territorial (Var)'})
-    return out
-
-
-@st.cache_data(ttl=3600, show_spinner=False)
-def fetch_jobs():
-    response = requests.get(RSS_URL, timeout=25, headers={
-        'User-Agent': 'JobRadar/4.2 (public RSS reader)',
-        'Accept': 'application/rss+xml, application/xml, text/xml'})
-    response.raise_for_status()
-    return parse_rss(response.content)
-
+try:
+    store = Store(os.environ.get('JOBRADAR_DB_PATH', str(ROOT / '.data' / 'jobradar.sqlite3')))
+except (OSError, sqlite3.Error):
+    st.error('Le stockage des annonces est inaccessible. Configurez JOBRADAR_DB_PATH vers un répertoire inscriptible.')
+    st.stop()
 
 st.title('📡 JobRadar')
-st.caption('V4.2 · Offres publiques du Var · Sans compte candidat ni clé API')
-st.info('Source connectée : Emploi-Territorial (collectivités du Var). Les agences d’intérim ne sont pas encore connectées.')
+st.caption('Offres du Var et de Toulon · Aucun compte candidat · Provenance et état des sources visibles')
 
 with st.sidebar:
     st.header('Filtres de recherche')
     category = st.selectbox('Métier', list(CATEGORIES))
     words = st.text_input('Mots-clés', placeholder='Ex. magasinier, travaux')
-    search_scope = st.selectbox('Rechercher dans', ['Titre et description', 'Titre uniquement'])
+    scope = st.selectbox('Rechercher dans', ['Titre et description', 'Titre uniquement'])
     area = st.selectbox('Zone', ['Tout le Var', 'Autour de Toulon (indicatif)', 'Commune / lieu à préciser'])
     location = st.text_input('Commune ou lieu', placeholder='Ex. Toulon, La Garde') if area == 'Commune / lieu à préciser' else ''
     hours = st.selectbox('Temps de travail', ['Indifférent', 'Temps plein uniquement', 'Temps partiel uniquement', 'Non précisé'])
     contracts = st.multiselect('Type de contrat / emploi', CONTRACT_OPTIONS, placeholder='Tous les types')
-    st.caption('Les offres sans indication explicite restent « Non précisé ». Dans la fonction publique, « emploi permanent » ne signifie pas nécessairement CDI.')
-    period = st.selectbox('Date de parution', ['Toutes les dates', '24 dernières heures', '3 derniers jours', '7 derniers jours', '14 derniers jours', '30 derniers jours', 'Période personnalisée'])
-    start, end = None, None
-    today = datetime.now(timezone.utc).date()
-    days = {'24 dernières heures': 1, '3 derniers jours': 3, '7 derniers jours': 7,
-            '14 derniers jours': 14, '30 derniers jours': 30}
-    if period in days:
-        start = today - timedelta(days=days[period])
-        end = today
+    names = {s.id: s.name for s in SOURCES}
+    selected = st.multiselect('Sources', list(names), default=list(names), format_func=names.get)
+    period = st.selectbox('Date de parution', ['Toutes les dates', '24 dernières heures', '3 derniers jours',
+                                            '7 derniers jours', '14 derniers jours', '30 derniers jours', 'Période personnalisée'])
+    now = datetime.now(UTC)
+    today = now.astimezone(PARIS).date()
+    start, end, since = None, None, None
+    if period == '24 dernières heures':
+        since = now - timedelta(hours=24)
+    elif period in ('3 derniers jours', '7 derniers jours', '14 derniers jours', '30 derniers jours'):
+        start, end = today - timedelta(days=int(period.split()[0]) - 1), today
     elif period == 'Période personnalisée':
         start = st.date_input('Du', value=today - timedelta(days=7), max_value=today)
         end = st.date_input('Au', value=today, max_value=today)
     sort = st.selectbox('Trier les résultats', ['Plus récentes d’abord', 'Plus anciennes d’abord', 'Titre A → Z'])
     max_results = st.selectbox('Annonces affichées', [25, 50, 100, 200], index=1)
-    if st.button('🔄 Actualiser les annonces', use_container_width=True):
-        fetch_jobs.clear()
-        st.rerun()
+    include_expired = st.checkbox('Inclure les annonces à échéance passée')
+    force = st.button('🔄 Actualiser les annonces', width='stretch')
+    st.caption('Actualisation automatique au plus une fois par heure ; pause de 15 min après une erreur. '
+               'Les champs absents restent non précisés. Emploi public permanent ≠ CDI.')
 
 try:
-    jobs = fetch_jobs()
-except (requests.RequestException, ValueError) as exc:
-    st.error('Impossible de lire le flux territorial : ' + str(exc)[:180])
-    st.markdown('[Consulter les offres du Var sur le site officiel](https://www.emploi-territorial.fr/emploi-mobilite/?search-dept=083)')
+    refresh(SOURCES, store, force=force)
+    states = store.states()
+except (OSError, sqlite3.Error):
+    st.error('Le stockage ne permet pas la collecte. Vérifiez JOBRADAR_DB_PATH et les droits du répertoire.')
     st.stop()
+audit_path = ROOT / 'docs' / 'agency_audit.json'
+try:
+    audits = {r['source_id']: r for r in json.loads(audit_path.read_text(encoding='utf-8'))['agencies']}
+except (OSError, ValueError, KeyError):
+    audits = {}
 
-st.caption(f'{len(jobs)} annonces reçues du flux RSS · cache d’une heure · la date affichée vient du flux')
-if start and end and start > end:
-    st.error('La date de début doit être antérieure ou égale à la date de fin.')
-    st.stop()
+source_rows = []
+for source in SOURCES:
+    state = states.get(source.id, {})
+    audit = audits.get(source.id, {})
+    status = state.get('status', audit.get('status', 'not_connected'))
+    if not source.enabled and state:
+        status = audit.get('status', 'not_connected')
+    source_rows.append({
+        'Source': source.name, 'Collecte activée': 'Oui' if source.enabled else 'Non',
+        'Conditions': 'Réutilisation restreinte' if source.access_review == 'restricted' else 'Examinées' if source.access_review in ('approved', 'public_rss') else 'À examiner',
+        'Page examinée': source.terms_url,
+        'État': STATUS_LABELS.get(status, status),
+        'Dernier contrôle': date_label(state.get('checked_at') if source.enabled else audit.get('checked_at')),
+        'Dernier succès avec offres': date_label(state.get('last_nonempty_success')),
+        'Offres reçues': state.get('fetched', 0), 'Offres du Var importées': state.get('imported', 0),
+        'Détail': state.get('message', '') if source.enabled else audit.get('message', 'Endpoint et conditions non examinés.'),
+    })
 
-terms = [normalize(x) for x in words.split() if x.strip()]
-filtered = []
-unknown_dates = 0
-for job in jobs:
-    full_text = normalize(job['title'] + ' ' + job['description'])
-    searched_text = normalize(job['title']) if search_scope == 'Titre uniquement' else full_text
-    if CATEGORIES[category] and not any(x in searched_text for x in CATEGORIES[category]):
-        continue
-    if terms and not all(x in searched_text for x in terms):
-        continue
-    if area == 'Autour de Toulon (indicatif)' and not any(x in full_text for x in NEAR):
-        continue
-    if location and normalize(location) not in full_text:
-        continue
-    if hours == 'Temps plein uniquement' and job['full_time'] is not True:
-        continue
-    if hours == 'Temps partiel uniquement' and job['full_time'] is not False:
-        continue
-    if hours == 'Non précisé' and job['full_time'] is not None:
-        continue
-    if contracts and job['contract'] not in contracts:
-        continue
-    if start is not None:
-        if job['date'] is None:
-            unknown_dates += 1
-            continue
-        if not (start <= job['date'] <= end):
-            continue
-    filtered.append(job)
+agency_ids = {s.id for s in SOURCES if s.id != 'territorial'}
+verified_agencies = sum(1 for s in SOURCES if s.id in agency_ids and s.enabled
+                        and states.get(s.id, {}).get('status') in ('ok', 'partial')
+                        and states[s.id].get('last_nonempty_success'))
+st.info(f'{verified_agencies}/23 agences d’intérim avec une collecte vérifiée. '
+        'Le suivi distingue les collectes réussies des annonces conservées en historique.')
+for source in SOURCES:
+    state = states.get(source.id, {})
+    if source.enabled and state.get('status') not in ('ok', 'empty'):
+        st.warning(f"{source.name} : {state.get('message', 'Pas de collecte réussie.')} "
+                   'Les annonces déjà enregistrées restent consultables avec leur date de dernière observation.')
 
-if sort == 'Plus récentes d’abord':
-    filtered.sort(key=lambda j: (j['date'] is not None, j['date'] or date.min), reverse=True)
-elif sort == 'Plus anciennes d’abord':
-    filtered.sort(key=lambda j: (j['date'] is None, j['date'] or date.max))
-else:
-    filtered.sort(key=lambda j: normalize(j['title']))
+offers_tab, sources_tab, history_tab = st.tabs(['Offres', 'État des sources', 'Historique'])
+with offers_tab:
+    jobs = deduplicate(store.jobs())
+    if start and end and start > end:
+        st.error('La date de début doit être antérieure ou égale à la date de fin.')
+        filtered, unknown = [], 0
+    else:
+        filtered, unknown = filter_jobs(
+            jobs, selected_sources=set(selected), keywords=words, title_only=scope == 'Titre uniquement',
+            category_terms=CATEGORIES[category], zone='near' if area.startswith('Autour') else 'var',
+            location=location, hours={'Indifférent': 'any', 'Temps plein uniquement': 'full',
+                                      'Temps partiel uniquement': 'part', 'Non précisé': 'unknown'}[hours],
+            contracts=contracts, start=start, end=end, since=since, include_expired=include_expired,
+            now=now, sort={'Plus récentes d’abord': 'recent', 'Plus anciennes d’abord': 'oldest', 'Titre A → Z': 'title'}[sort])
+    st.metric('Offres correspondant aux filtres', len(filtered))
+    st.caption(f'{len(jobs)} annonces distinctes dans l’historique local. Les sources peuvent publier des listes partielles. '
+               'Une annonce absente du dernier flux reste conservée ; son absence ne prouve pas son retrait.')
+    if unknown:
+        st.caption(f'{unknown} annonce(s) sans date exploitable exclue(s) par le filtre de date.')
+    if not filtered:
+        st.warning('Aucune offre pour ces filtres. Consultez l’état des sources et les annonces à échéance passée.')
+    for job in filtered[:max_results]:
+        with st.container(border=True):
+            st.subheader(job['title'])
+            st.caption(f"📍 {job['location'] or 'Var — lieu non précisé'} · {job['employer'] or 'Employeur non précisé'}")
+            kind = job.get('date_kind') or 'date'
+            st.caption(f"{kind.capitalize()} : {date_label(job.get('published_at'))} · "
+                       f"Dernière observation : {date_label(job['last_seen'])}")
+            work_time = 'Temps plein' if job.get('full_time') is True else 'Temps partiel' if job.get('full_time') is False else 'Temps non précisé'
+            st.caption(f"🕒 {work_time} · 📄 {job.get('contract', 'Non précisé')}")
+            if job['expired']:
+                st.warning('Échéance de candidature passée selon la source.')
+            if job['stale']:
+                st.caption('Annonce non revue depuis plus de sept jours : disponibilité à vérifier.')
+            if job.get('description'):
+                st.write(job['description'])
+            for origin in job['origins']:
+                st.link_button(f"Voir l’annonce originale · {origin['source_name']} ↗", origin['url'])
+    if len(filtered) > max_results:
+        st.caption(f'{max_results} offres affichées sur {len(filtered)}.')
+    if filtered:
+        export = [{k: j.get(k) for k in ('title', 'employer', 'location', 'contract', 'full_time', 'published_at',
+                                         'expires_at', 'url', 'first_seen', 'last_seen')}
+                  | {'sources': ', '.join(o['source_name'] for o in j['origins'])} for j in filtered]
+        st.download_button('Exporter les offres filtrées (CSV)', as_csv(export), 'jobradar-offres.csv', 'text/csv')
+    st.caption('Les lieux structurés sont utilisés en priorité ; les recherches dans le texte sont indicatives lorsque le lieu manque. '
+               'Les dates sont affichées à l’heure de Paris. Un flux indiquant seulement le jour ne permet pas de connaître l’heure exacte de parution.')
 
-st.metric('Offres correspondant aux filtres', len(filtered))
-if start is not None:
-    st.caption(f'Période : {start.strftime("%d/%m/%Y")} au {end.strftime("%d/%m/%Y")} (dates calendaires).')
-    if unknown_dates:
-        st.warning(f'{unknown_dates} offre(s) sans date exploitable écartée(s) par le filtre de date.')
-if not filtered:
-    st.warning('Aucune offre dans le flux pour ces filtres. Essaie « Tout le Var », « Toutes les dates » et « Tous les métiers ». Le flux peut ne présenter qu’une partie des offres du site.')
-for job in filtered[:max_results]:
-    with st.container(border=True):
-        st.subheader(job['title'])
-        shown_date = job['date'].strftime('%d/%m/%Y') if job['date'] else 'Date non renseignée'
-        date_label = f'{job["date_kind"].capitalize()} : {shown_date}' if job['date_kind'] else shown_date
-        work_time = 'Temps plein' if job['full_time'] is True else ('Temps partiel' if job['full_time'] is False else 'Temps non précisé')
-        st.caption(f'📍 Var (localisation détaillée non structurée) · {job["source"]} · {date_label}')
-        st.caption(f'🕒 {work_time} · 📄 {job["contract"]}')
-        if job['description']:
-            st.write(job['description'])
-        st.link_button('Voir l’annonce originale ↗', job['url'])
-if len(filtered) > max_results:
-    st.caption(f'{max_results} offres affichées sur {len(filtered)}. Augmente « Annonces affichées » dans les filtres.')
-st.caption('Attention : les filtres de zone cherchent des noms de communes dans le titre et la description, pas dans un champ géographique certifié. Une annonce peut être exclue si sa commune ne figure pas dans le flux. « Date de parution » utilise la date de publication RSS, ou la date de mise à jour si la publication est absente. La recherche « 24 dernières heures » est calculée par dates calendaires.')
+with sources_tab:
+    st.dataframe(source_rows, hide_index=True, width='stretch')
+    st.caption('Un accès réseau ou une page d’accueil lisible ne suffit pas à valider un connecteur. '
+               'Aucune connexion candidate, aucun contournement de CAPTCHA ou de restrictions d’accès.')
+    st.download_button('Exporter le diagnostic des sources', as_csv(source_rows), 'jobradar-sources.csv', 'text/csv')
+    runs = store.runs(100)
+    if runs:
+        st.dataframe(runs, hide_index=True, width='stretch')
 
-st.caption('Les types de contrat et temps de travail sont identifiés uniquement lorsqu’ils sont mentionnés explicitement dans le texte du flux RSS ; les informations absentes restent non précisées. Un filtre strict peut donc masquer des offres pertinentes.')
+with history_tab:
+    history = store.history(300)
+    st.caption('300 dernières observations initiales ou modifications. Chaque source conserve ses propres versions avant déduplication. '
+               'Le stockage local Streamlit peut être perdu au redémarrage ou au redéploiement : exportez les données ou utilisez un volume persistant.')
+    if history:
+        visible = [{k: row.get(k) for k in ('source_name', 'title', 'location', 'published_at', 'expires_at', 'observed_at', 'url')}
+                   for row in history]
+        st.dataframe(visible, hide_index=True, width='stretch')
+        st.download_button('Exporter l’historique affiché (CSV)', as_csv(visible), 'jobradar-historique.csv', 'text/csv')
+    else:
+        st.caption('Aucune annonce enregistrée pour le moment.')

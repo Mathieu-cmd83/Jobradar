@@ -1,0 +1,182 @@
+[
+  {
+    "source_id": "manpower",
+    "name": "Manpower",
+    "terms_url": "https://www.manpower.fr/contenu-statique/conditions-generales-d-utilisation",
+    "checked_at": "2026-10-08T13:28:44.669559+00:00",
+    "decision": "disabled_restrictions",
+    "quote": "toute représentation, reproduction, extraction, ou exploitation non expressément autorisée par Manpower, intégrale ou partielle, à titre gratuit ou onéreux, et par quelque procédé que ce soit d'un ou plusieurs éléments du Site, est illicite et constitue une contrefaçon sanctionnée notamment par les articles L.335-2 et suivants du Code de la Propriété Intellectuelle. « Manpower », « ManpowerGroup » et les différents logos et dénominations publiés",
+    "interpretation": "Collecte récurrente et republication dans un agrégateur désactivées. Les exceptions d’usage personnel ou d’extraction non substantielle ne sont pas étendues à une autorisation générale."
+  },
+  {
+    "source_id": "adecco",
+    "name": "Adecco",
+    "terms_url": "https://www.adecco.com/fr-fr/conditions-generales",
+    "checked_at": "2026-10-08T13:38:21.834664+00:00",
+    "decision": "disabled_restrictions",
+    "quote": "Il vous est donc expressément interdit de procéder à toute reproduction, transformation, distribution ou communication publique, ou de mettre à disposition, d'extraire, de réutiliser, de réenvoyer ou d'utiliser de toute autre manière, par quelque moyen ou procédure que ce soit, toute partie du site Web ou du contenu, sauf dans les cas autorisés par les présentes conditions d'utilisation ou toute condition spéciale pertinente, ou lorsque vous êtes autorisé à le faire par la lo",
+    "interpretation": "Conditions récupérées dans les données publiques Next.js/Sitecore de la page ; extraction et réutilisation restreintes, collecte désactivée."
+  },
+  {
+    "source_id": "adequat",
+    "name": "Adéquat",
+    "terms_url": "https://www.lejobadequat.com/mentions-legales",
+    "checked_at": "2026-10-08T13:28:44.669686+00:00",
+    "decision": "disabled_restrictions",
+    "quote": "La reproduction des informations est autorisée à des fins exclusives d’information pour un usage personnel et privé. Toute reproduction et toute utilisation de copie réalisée à d’autres fins est expressément interdite et soumise à l’autorisation préalable et expresse de l’Editeur du Site Internet. Dans tous les cas, la reproduction autorisée des informations devra indiquer la source et la mention de propriété adéquates. 4.2. Signes distinctifs Sa",
+    "interpretation": "Collecte récurrente et republication dans un agrégateur désactivées. Les exceptions d’usage personnel ou d’extraction non substantielle ne sont pas étendues à une autorisation générale."
+  },
+  {
+    "source_id": "interaction",
+    "name": "Interaction",
+    "terms_url": "https://www.interaction-interim.com/mentions-legales",
+    "checked_at": "2026-10-08T13:28:44.669745+00:00",
+    "decision": "disabled_restrictions",
+    "quote": "La reproduction et/ou la représentation de ces éléments ne sont autorisées qu'à des fins d'information pour un usage strictement personnel et privé. L'utilisation commerciale de ces éléments est interdite sauf éventuelle autorisation préalable de la société Interaction . (contact@interaction-interim.com ) 2.2.4.1 Est interdite la présentation d'une des pages du site www.interaction-interim.com dans une page web n'appartenant pas à ce dernier (fra",
+    "interpretation": "Collecte récurrente et republication dans un agrégateur désactivées. Les exceptions d’usage personnel ou d’extraction non substantielle ne sont pas étendues à une autorisation générale."
+  },
+  {
+    "source_id": "crit",
+    "name": "Crit",
+    "terms_url": "https://www.crit-job.com/conditions-generales-utilisation/",
+    "checked_at": "2026-10-08T13:28:44.669849+00:00",
+    "decision": "disabled_restrictions",
+    "quote": "toute reproduction, totale ou partielle, et toute représentation du contenu du Site et de l’Application mobile CRIT, d’un ou de plusieurs des éléments protégés, par quelque procédé que ce soit, sans autorisation expresse de CRIT est interdite, et constitue une contrefaçon sanctionnée par les articles L.335-2 et suivants du Code de la propriété intellectuelle. Responsabilité Nous ne garantissons pas que les informations contenues sur le Site et/ou",
+    "interpretation": "Collecte récurrente et republication dans un agrégateur désactivées. Les exceptions d’usage personnel ou d’extraction non substantielle ne sont pas étendues à une autorisation générale."
+  },
+  {
+    "source_id": "samsic",
+    "name": "Samsic",
+    "terms_url": "https://www.samsic-emploi.fr/cgu",
+    "checked_at": "2026-10-08T13:28:44.670047+00:00",
+    "decision": "disabled_restrictions",
+    "quote": "l’utilisation de systèmes automatisés ou de logiciels pour extraire des données du Site, en particulier tout contenu y figurant, (captures de données d’écran, screen scraping, web scraping sans que cette liste ne soit exhaustive), à quelques fins que ce soit, commerciales ou non ; est strictement interdite, sauf accord de licence d’exploitation conclue avec l’Éditeur ou tout titulaire des droits. Le fait pour l'Éditeur de ne pas engager de procéd",
+    "interpretation": "Collecte récurrente et republication dans un agrégateur désactivées. Les exceptions d’usage personnel ou d’extraction non substantielle ne sont pas étendues à une autorisation générale."
+  },
+  {
+    "source_id": "proman",
+    "name": "Proman",
+    "terms_url": "https://www.proman-emploi.fr/cgu",
+    "checked_at": "2026-10-08T13:28:44.670493+00:00",
+    "decision": "disabled_restrictions",
+    "quote": "Toute reproduction totale ou partielle de ce contenu est strictement interdite et est susceptible d’engager la responsabilité pénale et civile de son auteur. La violation de l'un des droits d'auteur de l'œuvre est un délit de contrefaçon passible, aux termes de l'article L.335-2 du Code de la Propriété Intellectuelle, d’une amende de 300 000 € et d’une peine d’emprisonnement de trois années. L’Utilisateur demeure titulaire et resp",
+    "interpretation": "Collecte récurrente et republication dans un agrégateur désactivées. Les exceptions d’usage personnel ou d’extraction non substantielle ne sont pas étendues à une autorisation générale."
+  },
+  {
+    "source_id": "partnaire",
+    "name": "Partnaire",
+    "terms_url": "https://www.partnaire.fr/conditions-generales-dutilisation/",
+    "checked_at": "2026-10-08T13:28:44.670681+00:00",
+    "decision": "disabled_restrictions",
+    "quote": "Vous vous interdisez toute réutilisation, modification, ou reproduction de ces éléments, à peine de contrefaçon, passible de sanctions civiles et pénales. Dispositions applicables en cas de résiliation / dénonciation de votre compte personnel Votre Compte Personnel peut être fermé soit parce que vous en faites la demande à PARTNAIRE en envoyant un courrier recommandé à l’adresse figurant en bas de cette page et PARTNAIRE vous notifiera par e-mail",
+    "interpretation": "Collecte récurrente et republication dans un agrégateur désactivées. Les exceptions d’usage personnel ou d’extraction non substantielle ne sont pas étendues à une autorisation générale."
+  },
+  {
+    "source_id": "mistertemp",
+    "name": "Mistertemp'",
+    "terms_url": "https://www.mistertemp.com/conditions-generales/",
+    "checked_at": "2026-10-08T13:28:44.670854+00:00",
+    "decision": "disabled_restrictions",
+    "quote": "Tous désassemblages, décompilations, décryptages, extractions, réutilisations, copies et plus généralement, tous actes de reproduction, représentation, diffusion et utilisation de l’un quelconque de ces éléments, en tout ou partie, sans l’autorisation de MisterTemp’ sont strictement interdits et pourront faire l’objet de poursuites judiciaires. 14. Données à caractère personnel MisterTemp’ pratique une politique de protection des données personne",
+    "interpretation": "Collecte récurrente et republication dans un agrégateur désactivées. Les exceptions d’usage personnel ou d’extraction non substantielle ne sont pas étendues à une autorisation générale."
+  },
+  {
+    "source_id": "gojob",
+    "name": "Gojob",
+    "terms_url": "https://gojob.com/cgu-cgv/",
+    "checked_at": "2026-10-08T13:28:44.671220+00:00",
+    "decision": "disabled_restrictions",
+    "quote": "tout Utilisateur s’interdit de procéder à toute extraction du contenu du Site pour une activité similaire ou concurrente, ou à des fins de recrutement. 10.5 Le Client s’engage à proposer une offre de Mission sérieuse et suffisamment détaillée au(x) Travailleur(s) avec le(s)quel(s) il rentre en contact par le biais du Site en vue d’obtenir une proposition tarifaire. A ce titre, le Client s’engage à apporter au Travailleur toute précision nécessair",
+    "interpretation": "Collecte récurrente et republication dans un agrégateur désactivées. Les exceptions d’usage personnel ou d’extraction non substantielle ne sont pas étendues à une autorisation générale."
+  },
+  {
+    "source_id": "randstad",
+    "name": "Randstad",
+    "terms_url": "https://www.randstad.fr/mentions-legales/",
+    "checked_at": "2026-10-08T13:28:44.671404+00:00",
+    "decision": "disabled_restrictions",
+    "quote": "l’Utilisateur s’interdit (i) l’extraction par transfert permanent ou temporaire de la totalité ou d’une partie qualitativement ou quantitativement substantielle du Site sur un autre support, par tout moyen et sous toute forme, et (ii) la réutilisation de la totalité ou d’une partie qualitativement ou quantitativement substantielle du Site quelle qu’en soit la forme, y compris par un lien hypertexte.A ce titre, l’Utilisateur s’engage expressément",
+    "interpretation": "Collecte récurrente et republication dans un agrégateur désactivées. Les exceptions d’usage personnel ou d’extraction non substantielle ne sont pas étendues à une autorisation générale."
+  },
+  {
+    "source_id": "synergie",
+    "name": "Synergie",
+    "terms_url": "https://www.synergie.fr/mentions-legales",
+    "checked_at": "2026-10-08T13:28:44.671681+00:00",
+    "decision": "disabled_restrictions",
+    "quote": "Toute reproduction, représentation ou diffusion, à des fins autres que personnelles, en tout ou partie du contenu des Services sur quelque support ou par tout procédé que ce soit est interdite. Le non-respect de cette interdiction constitue notamment une contrefaçon au sens des articles L. 335-2 et suivants du Code de la propriété intellectuelle susceptible d'engager la responsabilité civile et pénale du contrefacteur. 11.2 Crédits Photos : Tous",
+    "interpretation": "Collecte récurrente et republication dans un agrégateur désactivées. Les exceptions d’usage personnel ou d’extraction non substantielle ne sont pas étendues à une autorisation générale."
+  },
+  {
+    "source_id": "startpeople",
+    "name": "Start People",
+    "terms_url": "https://www.startpeople.fr/mentions-legales",
+    "checked_at": "2026-10-08T13:28:44.671741+00:00",
+    "decision": "disabled_restrictions",
+    "quote": "La reproduction de tout ou partie de ce site sur quelque support que ce soit est formellement interdite sauf autorisation expresse de la société Start People. Malgré toute l’attention apportée à la réalisation de ce site et à son actualisation régulière, des erreurs peuvent s’être glissées dans les informations et/ou documents présentés. Si vous en constatez n’hésitez pas à nous le faire savoir en contactant la société Start People, nous procéder",
+    "interpretation": "Collecte récurrente et republication dans un agrégateur désactivées. Les exceptions d’usage personnel ou d’extraction non substantielle ne sont pas étendues à une autorisation générale."
+  },
+  {
+    "source_id": "ras",
+    "name": "R.A.S Intérim",
+    "terms_url": "https://www.ras-interim.fr/cgu",
+    "checked_at": "2026-10-08T13:28:44.671800+00:00",
+    "decision": "disabled_restrictions",
+    "quote": "Toute représentation et/ou reproduction et/ou exploitation partielle ou totale des contenus et services proposés par le site RAS INTERIM , par quelque procédé que ce soit, sans l’autorisation préalable et par écrit de RAS INTERIM et/ou de ses partenaires est strictement interdite et serait susceptible de constituer une contrefaçon au sens des articles L 335-2 et suivants du Code de la propriété intellectuelle. Les marques « RAS » & « RAS INTERIM",
+    "interpretation": "Collecte récurrente et republication dans un agrégateur désactivées. Les exceptions d’usage personnel ou d’extraction non substantielle ne sont pas étendues à une autorisation générale."
+  },
+  {
+    "source_id": "temporis",
+    "name": "Temporis",
+    "terms_url": "https://www.temporis-franchise.fr/mentions-legales",
+    "checked_at": "2026-10-08T13:28:44.671887+00:00",
+    "decision": "disabled_restrictions",
+    "quote": "Vous Vous interdisez (i) l'extraction par transfert permanent ou temporaire de la totalité ou d'une partie qualitativement ou quantitativement substantielle du Site sur un autre support, par tout moyen et sous toute forme, et (ii) la réutilisation de la totalité ou d'une partie qualitativement ou quantitativement substantielle du Site quelle qu'en soit la forme, y compris par un lien hypertexte. A ce titre, Vous Vous engagez expressément à respec",
+    "interpretation": "Collecte récurrente et republication dans un agrégateur désactivées. Les exceptions d’usage personnel ou d’extraction non substantielle ne sont pas étendues à une autorisation générale."
+  },
+  {
+    "source_id": "actual",
+    "name": "Actual",
+    "terms_url": "https://www.actualgroup.com/mentions-legales",
+    "checked_at": "2026-10-08T13:28:44.671939+00:00",
+    "decision": "disabled_restrictions",
+    "quote": "Toute reproduction, représentation, modification, adaptation, traduction, diffusion, extraction, réutilisation ou exploitation, totale ou partielle, de tout ou partie du site ou de ses contenus, par quelque procédé que ce soit et sur quelque support que ce soit, est interdite sans l’autorisation préalable et écrite d’ACTUAL GROUP, sauf dans les cas expressément autorisés par la loi. Les marques, dénominations sociales, noms commerciaux, enseignes",
+    "interpretation": "Collecte récurrente et republication dans un agrégateur désactivées. Les exceptions d’usage personnel ou d’extraction non substantielle ne sont pas étendues à une autorisation générale."
+  },
+  {
+    "source_id": "team",
+    "name": "Team Intérim",
+    "terms_url": "https://team-interim.fr/CGU/site-internet",
+    "checked_at": "2026-10-08T13:28:44.672017+00:00",
+    "decision": "disabled_restrictions",
+    "quote": "il vous est expressément interdit de reproduire, transformer, distribuer ou communiquer publiquement, rendre disponible, extraire, réutiliser, renvoyer ou, de toute autre manière, d’utiliser par tous moyens ou procédures, toute partie du Site Internet ou du Contenu, à l’exception des cas prévus par les présentes Conditions d’utilisation ou toutes Conditions spécifiques applicables ou, des cas autorisés par la loi en vigueur ou, des cas dans lesqu",
+    "interpretation": "Collecte récurrente et republication dans un agrégateur désactivées. Les exceptions d’usage personnel ou d’extraction non substantielle ne sont pas étendues à une autorisation générale."
+  },
+  {
+    "source_id": "staffmatch",
+    "name": "Staffmatch",
+    "terms_url": "https://staffmatch.com/fr/legal/",
+    "checked_at": "2026-10-08T13:28:44.672051+00:00",
+    "decision": "disabled_restrictions",
+    "quote": "strictement réservée à un usage personnel, excluant tout usage à des fins publicitaires et/ou commerciales et/ou d’informations, et qu’elle soit conforme aux dispositions de l’article L122-5 du Code de la Propriété Intellectuelle. À l’exception des dispositions ci-dessus, toute reproduction, représentation, utilisation ou modification, par quelque procédé que ce soit et sur quelque support que ce soit, de tout ou partie du site, de tout ou partie",
+    "interpretation": "Collecte récurrente et republication dans un agrégateur désactivées. Les exceptions d’usage personnel ou d’extraction non substantielle ne sont pas étendues à une autorisation générale."
+  },
+  {
+    "source_id": "interimnation",
+    "name": "Intérim Nation",
+    "terms_url": "https://interim-nation.fr/mentions-legales/",
+    "checked_at": "2026-10-08T13:28:44.672145+00:00",
+    "decision": "disabled_restrictions",
+    "quote": "toute reproduction, totale ou partielle, et toute représentation du contenu du site, d’un ou de plusieurs des éléments protégés, par quelque procédé que ce soit, sans autorisation expresse de GROUPE BELVEDIA est interdite, et constitue une contrefaçon sanctionnée par les articles L.335-2 et suivants du Code de la propriété intellectuelle. Accès au site internet L’accès au Site est possible 24 heures sur 24, 7 jours sur 7, sauf en cas de force maj",
+    "interpretation": "Collecte récurrente et republication dans un agrégateur désactivées. Les exceptions d’usage personnel ou d’extraction non substantielle ne sont pas étendues à une autorisation générale."
+  },
+  {
+    "source_id": "satis",
+    "name": "Satis Jobs Center",
+    "terms_url": "https://satis-jobscenter.com/mentions-legales/",
+    "checked_at": "2026-10-08T13:28:44.672234+00:00",
+    "decision": "disabled_restrictions",
+    "quote": "Toute reproduction, représentation, modification, publication, adaptation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite, sauf autorisation écrite préalable de : Satis Solutions. Toute exploitation non autorisée du site ou de l’un quelconque des éléments qu’il contient sera considérée comme constitutive d’une contrefaçon et poursuivie conformément aux dispositions des articles L.335-2 et suivan",
+    "interpretation": "Collecte récurrente et republication dans un agrégateur désactivées. Les exceptions d’usage personnel ou d’extraction non substantielle ne sont pas étendues à une autorisation générale."
+  }
+]

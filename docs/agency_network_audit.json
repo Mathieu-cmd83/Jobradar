@@ -1,0 +1,186 @@
+[
+  {
+    "name": "Manpower",
+    "domain": "manpower.fr",
+    "url": "https://www.manpower.fr/robots.txt",
+    "checked_at": "2026-10-08T12:53:03.519692+00:00",
+    "result": "network_blocked",
+    "error": "ProxyError"
+  },
+  {
+    "name": "Adecco",
+    "domain": "adecco.fr",
+    "url": "https://www.adecco.fr/robots.txt",
+    "checked_at": "2026-10-08T12:53:03.520027+00:00",
+    "result": "network_blocked",
+    "error": "ProxyError"
+  },
+  {
+    "name": "Adéquat",
+    "domain": "lejobadequat.com",
+    "url": "https://www.lejobadequat.com/robots.txt",
+    "checked_at": "2026-10-08T12:53:03.520505+00:00",
+    "result": "network_blocked",
+    "error": "ProxyError"
+  },
+  {
+    "name": "Interaction",
+    "domain": "interaction-interim.com",
+    "url": "https://www.interaction-interim.com/robots.txt",
+    "checked_at": "2026-10-08T12:53:03.520855+00:00",
+    "result": "network_blocked",
+    "error": "ProxyError"
+  },
+  {
+    "name": "Crit",
+    "domain": "crit-job.com",
+    "url": "https://www.crit-job.com/robots.txt",
+    "checked_at": "2026-10-08T12:53:03.528585+00:00",
+    "result": "network_blocked",
+    "error": "ProxyError"
+  },
+  {
+    "name": "Samsic",
+    "domain": "samsic-emploi.fr",
+    "url": "https://www.samsic-emploi.fr/robots.txt",
+    "checked_at": "2026-10-08T12:53:03.532553+00:00",
+    "result": "network_blocked",
+    "error": "ProxyError"
+  },
+  {
+    "name": "Proman",
+    "domain": "proman-emploi.fr",
+    "url": "https://www.proman-emploi.fr/robots.txt",
+    "checked_at": "2026-10-08T12:53:03.534580+00:00",
+    "result": "network_blocked",
+    "error": "ProxyError"
+  },
+  {
+    "name": "Advance Emploi",
+    "domain": "advance-emploi.com",
+    "url": "https://www.advance-emploi.com/robots.txt",
+    "checked_at": "2026-10-08T12:53:03.536306+00:00",
+    "result": "network_blocked",
+    "error": "ProxyError"
+  },
+  {
+    "name": "Partnaire",
+    "domain": "partnaire.fr",
+    "url": "https://www.partnaire.fr/robots.txt",
+    "checked_at": "2026-10-08T12:53:03.541563+00:00",
+    "result": "network_blocked",
+    "error": "ProxyError"
+  },
+  {
+    "name": "Mistertemp'",
+    "domain": "mistertemp.com",
+    "url": "https://www.mistertemp.com/robots.txt",
+    "checked_at": "2026-10-08T12:53:03.543376+00:00",
+    "result": "network_blocked",
+    "error": "ProxyError"
+  },
+  {
+    "name": "Gojob",
+    "domain": "gojob.com",
+    "url": "https://www.gojob.com/robots.txt",
+    "checked_at": "2026-10-08T12:53:03.546619+00:00",
+    "result": "network_blocked",
+    "error": "ProxyError"
+  },
+  {
+    "name": "Randstad",
+    "domain": "randstad.fr",
+    "url": "https://www.randstad.fr/robots.txt",
+    "checked_at": "2026-10-08T12:53:03.548636+00:00",
+    "result": "network_blocked",
+    "error": "ProxyError"
+  },
+  {
+    "name": "Synergie",
+    "domain": "synergie.fr",
+    "url": "https://www.synergie.fr/robots.txt",
+    "checked_at": "2026-10-08T12:53:03.549730+00:00",
+    "result": "network_blocked",
+    "error": "ProxyError"
+  },
+  {
+    "name": "Start People",
+    "domain": "startpeople.fr",
+    "url": "https://www.startpeople.fr/robots.txt",
+    "checked_at": "2026-10-08T12:53:03.554697+00:00",
+    "result": "network_blocked",
+    "error": "ProxyError"
+  },
+  {
+    "name": "R.A.S Intérim",
+    "domain": "ras-interim.fr",
+    "url": "https://www.ras-interim.fr/robots.txt",
+    "checked_at": "2026-10-08T12:53:03.557987+00:00",
+    "result": "network_blocked",
+    "error": "ProxyError"
+  },
+  {
+    "name": "Temporis",
+    "domain": "temporis-franchise.fr",
+    "url": "https://www.temporis-franchise.fr/robots.txt",
+    "checked_at": "2026-10-08T12:53:03.560403+00:00",
+    "result": "network_blocked",
+    "error": "ProxyError"
+  },
+  {
+    "name": "Actual",
+    "domain": "groupeactual.eu",
+    "url": "https://www.groupeactual.eu/robots.txt",
+    "checked_at": "2026-10-08T12:53:03.562882+00:00",
+    "result": "network_blocked",
+    "error": "ProxyError"
+  },
+  {
+    "name": "Triangle Intérim",
+    "domain": "triangle.fr",
+    "url": "https://www.triangle.fr/robots.txt",
+    "checked_at": "2026-10-08T12:53:03.570194+00:00",
+    "result": "network_blocked",
+    "error": "ProxyError"
+  },
+  {
+    "name": "Team Intérim",
+    "domain": "team-interim.fr",
+    "url": "https://www.team-interim.fr/robots.txt",
+    "checked_at": "2026-10-08T12:53:03.571748+00:00",
+    "result": "network_blocked",
+    "error": "ProxyError"
+  },
+  {
+    "name": "Staffmatch",
+    "domain": "staffmatch.com",
+    "url": "https://www.staffmatch.com/robots.txt",
+    "checked_at": "2026-10-08T12:53:03.572616+00:00",
+    "result": "network_blocked",
+    "error": "ProxyError"
+  },
+  {
+    "name": "Intérim Nation",
+    "domain": "interim-nation.fr",
+    "url": "https://www.interim-nation.fr/robots.txt",
+    "checked_at": "2026-10-08T12:53:03.575948+00:00",
+    "result": "network_blocked",
+    "error": "ProxyError"
+  },
+  {
+    "name": "Satis Jobs Center",
+    "domain": "satis-jobscenter.com",
+    "url": "https://www.satis-jobscenter.com/robots.txt",
+    "checked_at": "2026-10-08T12:53:03.577227+00:00",
+    "result": "network_blocked",
+    "error": "ProxyError"
+  },
+  {
+    "name": "R Intérim",
+    "domain": "regional-interim.fr",
+    "url": "https://www.regional-interim.fr/robots.txt",
+    "checked_at": "2026-10-08T12:53:03.580030+00:00",
+    "result": "network_blocked",
+    "error": "ProxyError"
+  }
+]
